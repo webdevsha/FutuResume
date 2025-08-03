@@ -22,9 +22,9 @@ export class CareerAnalyzer {
     });
   }
 
-  async analyzeCareer(resumeText: string, goal: CareerGoalType) {
+  async analyzeCareer(resumeText: string, goal: CareerGoalType, timeline?: string) {
     try {
-      const prompt = this.buildAnalysisPrompt(resumeText, goal);
+      const prompt = this.buildAnalysisPrompt(resumeText, goal, timeline);
       
       const message = await this.anthropic.messages.create({
         // "claude-sonnet-4-20250514"
@@ -60,9 +60,17 @@ KEY PRIORITIZATION RULES:
     }
   }
 
-  private buildAnalysisPrompt(resumeText: string, goal: CareerGoalType): string {
+  private buildAnalysisPrompt(resumeText: string, goal: CareerGoalType, timeline?: string): string {
+    const timelineContext = timeline ? `
+IMPORTANT: The user wants to achieve this goal within ${timeline}. Adjust your recommendations accordingly:
+- For timelines 6 months or less: Focus on fast-track skills and immediate opportunities
+- For timelines 1+ years: Include more comprehensive skill development
+- Always prioritize pathways that can realistically be achieved within their timeline
+` : '';
     return `
 Analyze this resume and provide a comprehensive skill-authoring career analysis for someone who wants to ${goal === 'pivot' ? 'change career direction' : goal === 'step-up' ? 'advance in their current field' : 'explore new opportunities'}.
+
+${timelineContext}
 
 RESUME TEXT:
 ${resumeText}

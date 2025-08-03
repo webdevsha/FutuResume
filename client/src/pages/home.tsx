@@ -33,8 +33,10 @@ import type { CareerAnalysis, CareerGoalType } from "@shared/schema";
 
 export default function Home() {
   const [selectedGoal, setSelectedGoal] = useState<CareerGoalType | null>(null);
+  const [selectedTimeline, setSelectedTimeline] = useState<string | null>(null);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [analysisId, setAnalysisId] = useState<string | null>(null);
+  const [showProactiveMessage, setShowProactiveMessage] = useState(false);
   const { toast } = useToast();
 
   // File upload mutation
@@ -98,11 +100,32 @@ export default function Home() {
     uploadMutation.mutate(file);
   };
 
+  const handleTimelineChange = (timeline: string) => {
+    setSelectedTimeline(timeline);
+    setShowProactiveMessage(false);
+    
+    // Show encouraging message for proactive timelines
+    const timelineMonths = {
+      '1 month': 1,
+      '3 months': 3,
+      '6 months': 6,
+      '9 months': 9,
+      '1 year': 12,
+      '2 years': 24
+    };
+    
+    const months = timelineMonths[timeline as keyof typeof timelineMonths];
+    if (months <= 6) {
+      setShowProactiveMessage(true);
+      setTimeout(() => setShowProactiveMessage(false), 3000);
+    }
+  };
+
   const handleAnalysis = () => {
-    if (!uploadedFile || !selectedGoal) {
+    if (!uploadedFile || !selectedGoal || !selectedTimeline) {
       toast({
         title: "Missing information",
-        description: "Please upload your resume and select a goal first.",
+        description: "Please complete all steps: upload resume, select goal, and choose timeline.",
         variant: "destructive",
       });
       return;
@@ -110,7 +133,8 @@ export default function Home() {
     
     analysisMutation.mutate({ 
       resumeId: (uploadedFile as any).id, 
-      goal: selectedGoal 
+      goal: selectedGoal,
+      timeline: selectedTimeline
     });
   };
 
@@ -304,9 +328,43 @@ export default function Home() {
                   </RadioGroup>
                 </div>
 
+                {/* Timeline Selection */}
+                <div className="mb-6">
+                  <h4 className="text-lg font-medium text-dark-purple mb-4">Step 3: What's Your Timeline?</h4>
+                  <RadioGroup
+                    value={selectedTimeline || ''}
+                    onValueChange={handleTimelineChange}
+                    className="space-y-3"
+                  >
+                    {['1 month', '3 months', '6 months', '9 months', '1 year', '2 years'].map((timeline) => (
+                      <div key={timeline} className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:border-dark-purple transition-colors">
+                        <RadioGroupItem value={timeline} id={timeline} />
+                        <Label htmlFor={timeline} className="flex-1 cursor-pointer">
+                          <div className="font-medium text-gray-900">⏰ {timeline}</div>
+                        </Label>
+                      </div>
+                    ))}
+                  </RadioGroup>
+                  
+                  {/* Proactive Message */}
+                  {showProactiveMessage && (
+                    <div className="mt-4 p-4 bg-gradient-to-r from-sage-green/10 to-vibrant-orange/10 border border-sage-green/30 rounded-lg animate-in slide-in-from-bottom-2 duration-300">
+                      <div className="flex items-center space-x-3">
+                        <div className="text-2xl">🚀</div>
+                        <div>
+                          <p className="font-medium text-dark-purple">Wow, you're very proactive!</p>
+                          <p className="text-sm text-gray-600">
+                            Your ambitious timeline puts you ahead of 85% of career changers. We'll prioritize fast-track pathways for you.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
                 <Button 
                   onClick={handleAnalysis}
-                  disabled={!uploadedFile || !selectedGoal || analysisMutation.isPending}
+                  disabled={!uploadedFile || !selectedGoal || !selectedTimeline || analysisMutation.isPending}
                   className="w-full bg-vibrant-orange text-white hover:bg-vibrant-orange/90"
                 >
                   {analysisMutation.isPending ? "Analyzing..." : "Analyze My Future Pathways"}

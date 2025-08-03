@@ -66,7 +66,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Career analysis endpoint
   app.post('/api/analyze-career', async (req, res) => {
     try {
-      const { resumeId, goal } = req.body;
+      const { resumeId, goal, timeline } = req.body;
       
       // Validate input
       const goalValidation = CareerGoal.safeParse(goal);
@@ -87,7 +87,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Perform career analysis
       const analysis = await careerAnalyzer.analyzeCareer(
         resume.extractedText,
-        goalValidation.data
+        goalValidation.data,
+        timeline
       );
 
       // Save the analysis
