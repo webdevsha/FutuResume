@@ -47,6 +47,16 @@ export type CareerPathway = {
     toLearn: string[];
   };
   marketScore: number;
+  skillMapping?: {
+    type: string;
+    description: string;
+    icon: string;
+    approach: string;
+  };
+  evidenceFromResume?: string[];
+  organizations?: string[];
+  realJobOpenings?: number;
+  competitorCount?: number;
 };
 
 export type MarketData = {

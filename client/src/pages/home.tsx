@@ -533,7 +533,12 @@ export default function Home() {
 
             <div className="grid lg:grid-cols-3 gap-8">
               {analysis.pathways?.map((pathway) => (
-                <PathwayCard key={pathway.id} pathway={pathway} />
+                <PathwayCard 
+                  key={pathway.id} 
+                  pathway={pathway} 
+                  selectedGoal={selectedGoal} 
+                  selectedTimeline={selectedTimeline}
+                />
               ))}
             </div>
 

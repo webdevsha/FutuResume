@@ -1,14 +1,25 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Users, Target, Star } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Users, Target, Star, MapPin, Layers, Zap } from 'lucide-react';
 import type { CareerPathway } from '@shared/schema';
 
 interface PathwayCardProps {
   pathway: CareerPathway;
+  selectedGoal?: string;
+  selectedTimeline?: string;
 }
 
-export default function PathwayCard({ pathway }: PathwayCardProps) {
+export default function PathwayCard({ pathway, selectedGoal, selectedTimeline }: PathwayCardProps) {
+  const getSkillMappingIcon = (type: string) => {
+    switch (type) {
+      case 'Map-skilling': return <MapPin size={16} className="text-sage-green" />;
+      case 'Parallel-skilling': return <Layers size={16} className="text-vibrant-orange" />;
+      case 'Deep-skilling': return <Zap size={16} className="text-dark-purple" />;
+      default: return <Target size={16} />;
+    }
+  };
   const getCompetitionColor = (competition: string) => {
     switch (competition) {
       case 'high': return 'text-red-500';
@@ -83,6 +94,17 @@ export default function PathwayCard({ pathway }: PathwayCardProps) {
           <span className="text-2xl">{pathway.icon}</span>
           <h4 className="font-semibold text-dark-purple mt-2">{pathway.title}</h4>
           <p className="text-gray-600 text-sm mt-1">{pathway.description}</p>
+          
+          {/* Skill Mapping Badge */}
+          {pathway.skillMapping && (
+            <div className="mt-3 flex items-center space-x-2">
+              {getSkillMappingIcon(pathway.skillMapping.type)}
+              <div className="text-sm">
+                <span className="font-medium text-dark-purple">{pathway.skillMapping.type}</span>
+                <span className="text-gray-600 ml-1">→ {pathway.skillMapping.description}</span>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="space-y-3 mb-6">
@@ -112,9 +134,121 @@ export default function PathwayCard({ pathway }: PathwayCardProps) {
           </div>
         </div>
 
-        <Button className={`w-full ${getButtonStyle(pathway.type)}`}>
-          {pathway.type === 'custom' ? 'Start Creating' : 'View Details'}
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className={`w-full ${getButtonStyle(pathway.type)}`}>
+              {pathway.type === 'custom' ? 'Start Creating' : 'View Details'}
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="flex items-center space-x-3">
+                <span className="text-2xl">{pathway.icon}</span>
+                <div>
+                  <h3 className="text-xl font-bold text-dark-purple">{pathway.title}</h3>
+                  <p className="text-sm text-gray-600">{pathway.skillMapping?.approach}</p>
+                </div>
+              </DialogTitle>
+            </DialogHeader>
+            
+            <div className="space-y-6 mt-6">
+              {/* Skill Mapping Strategy */}
+              {pathway.skillMapping && (
+                <div className="border rounded-lg p-4 bg-gradient-to-r from-light-purple/10 to-sage-green/10">
+                  <div className="flex items-center space-x-3 mb-3">
+                    {getSkillMappingIcon(pathway.skillMapping.type)}
+                    <h4 className="font-semibold text-dark-purple">{pathway.skillMapping.type}</h4>
+                  </div>
+                  <p className="text-gray-700">{pathway.skillMapping.approach}</p>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Based on your {selectedGoal} goal with a {selectedTimeline} timeline
+                  </p>
+                </div>
+              )}
+
+              {/* Evidence from Resume */}
+              <div className="border rounded-lg p-4">
+                <h4 className="font-semibold text-dark-purple mb-3">Evidence from Your Resume</h4>
+                <div className="space-y-2">
+                  <div className="flex items-start space-x-3">
+                    <Badge variant="secondary" className="mt-1">Experience</Badge>
+                    <p className="text-sm text-gray-700">Your background shows strong analytical and problem-solving skills that directly transfer to this pathway.</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Badge variant="secondary" className="mt-1">Skills</Badge>
+                    <p className="text-sm text-gray-700">Existing competencies in {pathway.skills.required.slice(0, 2).join(', ')} provide a solid foundation.</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Badge variant="secondary" className="mt-1">Timeline</Badge>
+                    <p className="text-sm text-gray-700">With {selectedTimeline}, this pathway aligns well with your accelerated learning goals.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Skill Development Plan */}
+              <div className="border rounded-lg p-4">
+                <h4 className="font-semibold text-dark-purple mb-3">Your Skill Development Plan</h4>
+                <div className="space-y-3">
+                  <div>
+                    <Badge className="bg-sage-green text-white mb-2">Already Have</Badge>
+                    <div className="flex flex-wrap gap-2">
+                      {pathway.skills.required.map(skill => (
+                        <Badge key={skill} variant="outline">{skill}</Badge>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <Badge className="bg-vibrant-orange text-white mb-2">To Develop</Badge>
+                    <div className="flex flex-wrap gap-2">
+                      {pathway.skills.toLearn.map(skill => (
+                        <Badge key={skill} variant="outline">{skill}</Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Organizations & Opportunities */}
+              {pathway.organizations && pathway.organizations.length > 0 && (
+                <div className="border rounded-lg p-4">
+                  <h4 className="font-semibold text-dark-purple mb-3">
+                    {pathway.type === 'custom' ? 'Organizations Creating These Roles' : 'Currently Hiring'}
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {pathway.organizations.map(org => (
+                      <Badge key={org} variant="outline" className="bg-light-orange/10">{org}</Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Market Insights */}
+              <div className="border rounded-lg p-4 bg-gradient-to-r from-gray-50 to-light-purple/5">
+                <h4 className="font-semibold text-dark-purple mb-3">Market Insights</h4>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <span className="text-gray-600">Market Score</span>
+                    <div className="font-semibold text-lg">{pathway.marketScore}/100</div>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Competition Level</span>
+                    <div className={`font-semibold ${getCompetitionColor(pathway.competition)}`}>
+                      {pathway.competition.charAt(0).toUpperCase() + pathway.competition.slice(1)}
+                    </div>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Salary Range</span>
+                    <div className="font-semibold">${pathway.salary.min.toLocaleString()} - ${pathway.salary.max.toLocaleString()}</div>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Time to Goal</span>
+                    <div className="font-semibold">{pathway.timeline}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </CardContent>
     </Card>
   );

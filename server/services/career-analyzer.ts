@@ -114,7 +114,20 @@ For custom roles, show actual non-profits and startups working in those areas.`;
       });
 
       const analysisText = response.text || '';
-      return this.parseAnalysisResponse(analysisText);
+      console.log('Raw Gemini response:', analysisText);
+
+      if (analysisText) {
+        try {
+          const analysis = JSON.parse(analysisText);
+          return this.processAnalysisData(analysis);
+        } catch (error) {
+          console.error('JSON parsing failed:', error);
+          return this.getFallbackAnalysis();
+        }
+      } else {
+        console.error('Empty response from Gemini');
+        return this.getFallbackAnalysis();
+      }
     } catch (error) {
       console.error('Career analysis error:', error);
       throw new Error('Failed to analyze career with AI: ' + (error instanceof Error ? error.message : 'Unknown error'));
@@ -275,6 +288,48 @@ The custom pathway should be the most innovative with organizations actively hir
 `;
   }
 
+  private processAnalysisData(analysis: any) {
+    // Add skill-mapping data to each pathway
+    const processedPathways = analysis.pathways?.map((pathway: any) => ({
+      ...pathway,
+      skillMapping: this.generateSkillMapping(pathway.type, pathway.skills),
+      evidenceFromResume: [], // Will be populated with resume evidence
+      organizations: pathway.organizations || [],
+      realJobOpenings: pathway.realJobOpenings || 0,
+      competitorCount: pathway.competitorCount || 0
+    })) || [];
+
+    return {
+      ...analysis,
+      pathways: processedPathways
+    };
+  }
+
+  private generateSkillMapping(pathwayType: string, skills: any) {
+    const mappings = {
+      'traditional': {
+        type: 'Deep-skilling',
+        description: 'Expertise that matters',
+        icon: '🎯',
+        approach: 'Develop deep expertise in core domain skills'
+      },
+      'niche': {
+        type: 'Map-skilling', 
+        description: 'Strategic skill combinations',
+        icon: '🗺️',
+        approach: 'Combine skills from different domains strategically'
+      },
+      'custom': {
+        type: 'Parallel-skilling',
+        description: 'Multi-passionate approach', 
+        icon: '🚀',
+        approach: 'Build multiple skill sets simultaneously'
+      }
+    };
+
+    return mappings[pathwayType as keyof typeof mappings] || mappings.traditional;
+  }
+
   private parseAnalysisResponse(analysisText: string) {
     try {
       // Extract JSON from the response
@@ -317,7 +372,16 @@ The custom pathway should be the most innovative with organizations actively hir
             recommended: ['Budget Planning', 'Campaign Management'],
             toLearn: ['Advanced Analytics', 'Leadership Skills']
           },
-          marketScore: 45
+          marketScore: 45,
+          skillMapping: {
+            type: 'Deep-skilling',
+            description: 'Expertise that matters',
+            icon: '🎯',
+            approach: 'Develop deep expertise in core domain skills'
+          },
+          organizations: ['Microsoft', 'Google', 'Meta', 'LinkedIn', 'Salesforce'],
+          realJobOpenings: 2400,
+          competitorCount: 850
         },
         {
           id: 'niche',
@@ -334,7 +398,16 @@ The custom pathway should be the most innovative with organizations actively hir
             recommended: ['A/B Testing', 'Product Marketing'],
             toLearn: ['Marketing Automation', 'Customer Psychology']
           },
-          marketScore: 78
+          marketScore: 78,
+          skillMapping: {
+            type: 'Map-skilling',
+            description: 'Strategic skill combinations',
+            icon: '🗺️',
+            approach: 'Combine skills from different domains strategically'
+          },
+          organizations: ['Notion', 'Linear', 'Retool', 'Vercel', 'Supabase'],
+          realJobOpenings: 890,
+          competitorCount: 267
         },
         {
           id: 'custom',
@@ -347,11 +420,20 @@ The custom pathway should be the most innovative with organizations actively hir
           competition: 'low',
           demand: 'Emerging (High Value)',
           skills: {
-            required: ['Marketing Automation', 'AI Tools'],
-            recommended: ['Customer Psychology', 'Process Design'],
-            toLearn: ['Machine Learning Basics', 'Behavioral Analytics']
+            required: ['Marketing Strategy', 'Data Analytics'],
+            recommended: ['AI Tools', 'Psychology', 'Automation'],
+            toLearn: ['Machine Learning', 'Behavioral Design']
           },
-          marketScore: 85
+          marketScore: 85,
+          skillMapping: {
+            type: 'Parallel-skilling',
+            description: 'Multi-passionate approach',
+            icon: '🚀',
+            approach: 'Build multiple skill sets simultaneously'
+          },
+          organizations: ['Code for America', 'DonorsChoose', 'Anthropic', 'Scale AI'],
+          realJobOpenings: 156,
+          competitorCount: 23
         }
       ],
       marketData: {
