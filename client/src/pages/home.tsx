@@ -746,7 +746,7 @@ export default function Home() {
                         <div className="flex justify-between text-sm">
                           <span className="text-gray-600">Salary Range:</span>
                           <span className="font-medium text-dark-purple">
-                            ${pathway.salary.min.toLocaleString()} - ${pathway.salary.max.toLocaleString()}
+                            {pathway.salary ? `$${pathway.salary.min.toLocaleString()} - $${pathway.salary.max.toLocaleString()}` : 'To be determined'}
                           </span>
                         </div>
                         <div className="flex justify-between text-sm mt-1">

@@ -117,7 +117,7 @@ export default function PathwayCard({ pathway, selectedGoal, selectedTimeline }:
               pathway.type === 'custom' ? 'text-vibrant-orange' : 
               'text-gray-900'
             }`}>
-              ${pathway.salary.min.toLocaleString()} - ${pathway.salary.max.toLocaleString()}
+              {pathway.salary ? `$${pathway.salary.min.toLocaleString()} - $${pathway.salary.max.toLocaleString()}` : 'To be determined'}
             </span>
           </div>
           <div className="flex justify-between text-sm">
