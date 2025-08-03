@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
@@ -298,53 +298,35 @@ export default function Home() {
 
                 {/* Goal Selection */}
                 <div className="mb-6">
-                  <h4 className="text-lg font-medium text-dark-purple mb-4">Step 2: What's Your Goal?</h4>
-                  <RadioGroup
-                    value={selectedGoal || ''}
-                    onValueChange={(value) => setSelectedGoal(value as CareerGoalType)}
-                    className="space-y-3"
-                  >
-                    <div className="flex items-center space-x-3 p-4 border border-gray-200 rounded-lg hover:border-dark-purple transition-colors">
-                      <RadioGroupItem value="pivot" id="pivot" />
-                      <Label htmlFor="pivot" className="flex-1 cursor-pointer">
-                        <div className="font-medium text-gray-900">🔄 Career Pivot</div>
-                        <div className="text-sm text-gray-600">Change industries or roles</div>
-                      </Label>
-                    </div>
-                    <div className="flex items-center space-x-3 p-4 border border-gray-200 rounded-lg hover:border-dark-purple transition-colors">
-                      <RadioGroupItem value="step-up" id="step-up" />
-                      <Label htmlFor="step-up" className="flex-1 cursor-pointer">
-                        <div className="font-medium text-gray-900">📈 Step Up</div>
-                        <div className="text-sm text-gray-600">Advance in current field</div>
-                      </Label>
-                    </div>
-                    <div className="flex items-center space-x-3 p-4 border border-gray-200 rounded-lg hover:border-dark-purple transition-colors">
-                      <RadioGroupItem value="new-phase" id="new-phase" />
-                      <Label htmlFor="new-phase" className="flex-1 cursor-pointer">
-                        <div className="font-medium text-gray-900">🚀 New Phase</div>
-                        <div className="text-sm text-gray-600">Explore emerging opportunities</div>
-                      </Label>
-                    </div>
-                  </RadioGroup>
+                  <Label className="text-lg font-medium text-dark-purple mb-3 block">Step 2: What's Your Goal?</Label>
+                  <Select value={selectedGoal || ''} onValueChange={(value) => setSelectedGoal(value as CareerGoalType)}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select your career goal" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="pivot">🔄 Career Pivot - Change industries or roles</SelectItem>
+                      <SelectItem value="step-up">📈 Step Up - Advance in current field</SelectItem>
+                      <SelectItem value="new-phase">🚀 New Phase - Explore emerging opportunities</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 {/* Timeline Selection */}
                 <div className="mb-6">
-                  <h4 className="text-lg font-medium text-dark-purple mb-4">Step 3: What's Your Timeline?</h4>
-                  <RadioGroup
-                    value={selectedTimeline || ''}
-                    onValueChange={handleTimelineChange}
-                    className="space-y-3"
-                  >
-                    {['1 month', '3 months', '6 months', '9 months', '1 year', '2 years'].map((timeline) => (
-                      <div key={timeline} className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:border-dark-purple transition-colors">
-                        <RadioGroupItem value={timeline} id={timeline} />
-                        <Label htmlFor={timeline} className="flex-1 cursor-pointer">
-                          <div className="font-medium text-gray-900">⏰ {timeline}</div>
-                        </Label>
-                      </div>
-                    ))}
-                  </RadioGroup>
+                  <Label className="text-lg font-medium text-dark-purple mb-3 block">Step 3: What's Your Timeline?</Label>
+                  <Select value={selectedTimeline || ''} onValueChange={handleTimelineChange}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select your timeline" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="1 month">⏰ 1 month</SelectItem>
+                      <SelectItem value="3 months">⏰ 3 months</SelectItem>
+                      <SelectItem value="6 months">⏰ 6 months</SelectItem>
+                      <SelectItem value="9 months">⏰ 9 months</SelectItem>
+                      <SelectItem value="1 year">⏰ 1 year</SelectItem>
+                      <SelectItem value="2 years">⏰ 2 years</SelectItem>
+                    </SelectContent>
+                  </Select>
                   
                   {/* Proactive Message */}
                   {showProactiveMessage && (
