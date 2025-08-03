@@ -138,8 +138,7 @@ export default function Home() {
     
     analysisMutation.mutate({ 
       resumeId: (uploadedFile as any).id, 
-      goal: selectedGoal,
-      timeline: selectedTimeline
+      goal: selectedGoal
     });
   };
 
@@ -150,17 +149,17 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-dark-purple to-vibrant-orange rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-br from-primary-orange to-secondary-blue rounded-lg flex items-center justify-center">
                 <Map className="text-white" size={16} />
               </div>
-              <span className="text-xl font-bold text-dark-purple">FutureSu.me</span>
+              <span className="text-xl font-bold text-primary-orange">FutureSu.me</span>
             </div>
             <div className="hidden md:flex items-center space-x-6">
-              <a href="#" className="text-gray-600 hover:text-dark-purple transition-colors">How it Works</a>
-              <a href="#" className="text-gray-600 hover:text-dark-purple transition-colors">Skill-Authoring Bootcamp</a>
-              <a href="#" className="text-gray-600 hover:text-dark-purple transition-colors">Success Stories</a>
-              <Button className="bg-dark-purple text-white hover:bg-dark-purple/90">
-                Sign In
+              <a href="#how-it-works" className="text-gray-600 hover:text-primary-orange transition-colors">How it Works</a>
+              <a href="#success-stories" className="text-gray-600 hover:text-primary-orange transition-colors">Success Stories</a>
+              <a href="#community" className="text-gray-600 hover:text-primary-orange transition-colors">Community</a>
+              <Button className="bg-primary-orange text-white hover:bg-primary-orange/90 rounded-full">
+                Join Waitlist
               </Button>
             </div>
             <Button variant="ghost" size="sm" className="md:hidden">
@@ -170,109 +169,362 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-cream via-light-purple to-sage-green/20 py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
-            <Badge className="bg-white/80 backdrop-blur-sm border-light-purple text-dark-purple mb-6">
-              🎯 Limited Beta Access
-            </Badge>
-            <h1 className="text-4xl lg:text-6xl font-bold text-dark-purple mb-6 leading-tight">
-              Build Your Future Resume
+      {/* Hero Section - Storytelling Style */}
+      <section className="relative py-20 overflow-hidden bg-neutral-beige">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-orange/5 to-secondary-blue/5"></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              Welcome to the first career platform built for 
+              <span className="block text-primary-orange">skill-authors</span>
+              <span className="block text-gray-700 text-2xl md:text-3xl font-normal mt-2">not skill-followers.</span>
             </h1>
-            <p className="text-xl text-gray-700 mb-4">
-              Be Ready When You're Applying
-            </p>
-            <p className="text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
-              Stop following predetermined career paths. Start <strong>skill-authoring</strong> your unique future. 
-              Our AI maps your current skills to emerging opportunities, creating personalized pathways that match your goals.
+            <p className="text-xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed">
+              We start from a simple insight: the way you build careers defines the way you live. 
+              And the way you build careers is changing fast. The first skill-authoring platform launches in 2025 for Gen Z who refuse to be boxed in.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
-                className="bg-vibrant-orange text-white hover:bg-vibrant-orange/90 flex items-center space-x-2"
+                size="lg" 
+                className="bg-primary-orange text-white hover:bg-primary-orange/90 px-8 py-3 rounded-full"
                 onClick={() => document.getElementById('upload-section')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                <Upload size={16} />
-                <span>Upload Your Resume</span>
+                Explore FutureSu.me
               </Button>
-              <Button variant="ghost" className="text-dark-purple font-semibold hover:text-dark-purple/80 flex items-center space-x-2">
-                <PlayCircle size={16} />
-                <span>Watch Demo</span>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-secondary-blue text-secondary-blue hover:bg-secondary-blue/10 px-8 py-3 rounded-full"
+              >
+                Watch Demo
               </Button>
+            </div>
+            
+            {/* Hero Illustration Area */}
+            <div className="mt-16 relative">
+              <div className="mx-auto max-w-4xl">
+                <div className="relative bg-white/50 backdrop-blur-sm rounded-3xl p-8 storytelling-card">
+                  <div className="flex justify-center items-center space-x-8 flex-wrap">
+                    <div className="flex flex-col items-center skill-float">
+                      <div className="w-16 h-16 bg-primary-orange/20 rounded-full flex items-center justify-center mb-2">
+                        <span className="text-2xl">🎨</span>
+                      </div>
+                      <span className="text-sm text-gray-600">Design</span>
+                    </div>
+                    <div className="flex flex-col items-center skill-float" style={{animationDelay: '0.5s'}}>
+                      <div className="w-16 h-16 bg-secondary-blue/20 rounded-full flex items-center justify-center mb-2">
+                        <span className="text-2xl">💻</span>
+                      </div>
+                      <span className="text-sm text-gray-600">Code</span>
+                    </div>
+                    <div className="flex flex-col items-center skill-float" style={{animationDelay: '1s'}}>
+                      <div className="w-16 h-16 bg-accent-green/20 rounded-full flex items-center justify-center mb-2">
+                        <span className="text-2xl">🌱</span>
+                      </div>
+                      <span className="text-sm text-gray-600">Growth</span>
+                    </div>
+                    <div className="flex flex-col items-center skill-float" style={{animationDelay: '1.5s'}}>
+                      <div className="w-16 h-16 bg-primary-orange/20 rounded-full flex items-center justify-center mb-2">
+                        <span className="text-2xl">🎵</span>
+                      </div>
+                      <span className="text-sm text-gray-600">Create</span>
+                    </div>
+                  </div>
+                  <div className="mt-6 text-center">
+                    <p className="text-gray-600 italic">"Your weird combination of interests might just be your career superpower."</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Value Proposition */}
+      {/* The Problem Story Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-dark-purple mb-4">
-              Why Skill-Authoring {'>'} Upskilling
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">
+              The old way of thinking about careers?
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Traditional career advice treats you like a follower. We help you become the author of your unique professional story.
-            </p>
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Traditional Path Illustration */}
+              <div className="space-y-6">
+                <div className="relative bg-gray-100 rounded-2xl p-8 storytelling-card">
+                  <div className="text-center">
+                    <div className="text-6xl mb-4">😔</div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-4">Pick a lane. Stay in your lane.</h3>
+                    <p className="text-gray-600">Climb the ladder someone else built.</p>
+                  </div>
+                  <div className="mt-6 flex justify-center space-x-4">
+                    <div className="bg-gray-300 px-3 py-1 rounded-full text-sm text-gray-700">ENGINEER</div>
+                    <div className="bg-gray-300 px-3 py-1 rounded-full text-sm text-gray-700">DOCTOR</div>
+                    <div className="bg-gray-300 px-3 py-1 rounded-full text-sm text-gray-700">LAWYER</div>
+                  </div>
+                </div>
+                <p className="text-gray-600 italic text-center">
+                  But what if your superpowers don't fit in someone else's box?
+                </p>
+              </div>
+              
+              {/* Skill-Authoring Reality */}
+              <div className="space-y-6">
+                <div className="relative bg-gradient-to-br from-primary-orange/10 to-accent-green/10 rounded-2xl p-8 storytelling-card">
+                  <div className="text-center">
+                    <div className="text-6xl mb-4">✨</div>
+                    <h3 className="text-xl font-bold text-primary-orange mb-4">The skill-authoring way?</h3>
+                    <p className="text-gray-700 mb-4">Design your own career canvas. Combine skills like colors.</p>
+                    <p className="text-secondary-blue font-medium">Create roles that don't exist yet.</p>
+                  </div>
+                  <div className="mt-6 flex flex-wrap justify-center gap-2">
+                    <div className="bg-primary-orange/20 px-3 py-1 rounded-full text-sm text-primary-orange">AI + Psychology</div>
+                    <div className="bg-secondary-blue/20 px-3 py-1 rounded-full text-sm text-secondary-blue">Design + Code</div>
+                    <div className="bg-accent-green/20 px-3 py-1 rounded-full text-sm text-accent-green">Art + Business</div>
+                  </div>
+                </div>
+                <p className="text-primary-orange font-medium text-center">
+                  Your weird combination of interests might just be your career superpower.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4 Ways to Author Your Future */}
+      <section id="how-it-works" className="py-16 bg-neutral-beige">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              4 Ways to Author Your Future
+            </h2>
+            <p className="text-xl text-gray-600">Instead of following someone else's career recipe</p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            {/* Traditional Approach */}
-            <Card className="bg-gray-50 border-2 border-gray-200">
-              <CardContent className="p-8">
-                <div className="text-red-500 mb-4">
-                  <AlertCircle size={32} />
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Map-Skilling */}
+            <div className="storytelling-card bg-white p-8 rounded-2xl">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="w-16 h-16 bg-secondary-blue/20 rounded-full flex items-center justify-center">
+                  <span className="text-2xl">🗺️</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-4">Traditional "Upskilling"</h3>
-                <ul className="space-y-3 text-gray-600">
-                  <li className="flex items-start space-x-3">
-                    <div className="text-red-500 mt-1">→</div>
-                    <span>Follow predetermined career ladders</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="text-red-500 mt-1">→</div>
-                    <span>Compete in oversaturated job markets</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="text-red-500 mt-1">→</div>
-                    <span>Generic skill recommendations</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="text-red-500 mt-1">→</div>
-                    <span>One-size-fits-all career advice</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+                <div>
+                  <h3 className="text-2xl font-bold text-secondary-blue">Map-Skilling</h3>
+                  <p className="text-gray-600">See the Bigger Picture</p>
+                </div>
+              </div>
+              <p className="text-gray-700 mb-4">
+                Ever notice how gaming + psychology = UX research? Or how traditional crafts + digital marketing = thriving artisan business?
+              </p>
+              <p className="text-gray-700 mb-6">
+                <strong>Map-skilling</strong> helps you see connections others miss. We show you the secret pathways between skills that create entirely new career possibilities.
+              </p>
+              <div className="bg-accent-green/10 p-4 rounded-lg">
+                <p className="text-accent-green font-medium italic">
+                  "I never knew my love for plants could connect to data science until I discovered agricultural AI!" - Sarah, 22
+                </p>
+              </div>
+            </div>
 
-            {/* Skill-Authoring Approach */}
-            <Card className="bg-gradient-to-br from-sage-green/10 to-light-orange/10 border-2 border-sage-green">
-              <CardContent className="p-8">
-                <div className="text-sage-green mb-4">
-                  <CheckCircle size={32} />
+            {/* Parallel-Skilling */}
+            <div className="storytelling-card bg-white p-8 rounded-2xl">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="w-16 h-16 bg-primary-orange/20 rounded-full flex items-center justify-center">
+                  <span className="text-2xl">⚡</span>
                 </div>
-                <h3 className="text-xl font-bold text-dark-purple mb-4">Our "Skill-Authoring"</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start space-x-3">
-                    <div className="text-sage-green mt-1">→</div>
-                    <span><strong>Map-skilling:</strong> Strategic skill combinations</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="text-sage-green mt-1">→</div>
-                    <span><strong>Parallel-skilling:</strong> Multi-passionate approach</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="text-sage-green mt-1">→</div>
-                    <span><strong>Deep-skilling:</strong> Expertise that matters</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="text-sage-green mt-1">→</div>
-                    <span>Create your own role in emerging markets</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+                <div>
+                  <h3 className="text-2xl font-bold text-primary-orange">Parallel-Skilling</h3>
+                  <p className="text-gray-600">Build Multiple Strengths</p>
+                </div>
+              </div>
+              <p className="text-gray-700 mb-4">
+                Why choose between coding OR design OR business when you could build all three?
+              </p>
+              <p className="text-gray-700 mb-6">
+                <strong>Parallel-skilling</strong> is like cross-training for your career. While others specialize in one thing, you become unstoppable by combining three things you love.
+              </p>
+              <div className="bg-secondary-blue/10 p-4 rounded-lg">
+                <p className="text-secondary-blue font-medium italic">
+                  "I'm building climate tech skills alongside community organizing. Together, they're so much more powerful!" - Marcus, 24
+                </p>
+              </div>
+            </div>
+
+            {/* Deep-Skilling */}
+            <div className="storytelling-card bg-white p-8 rounded-2xl">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="w-16 h-16 bg-accent-green/20 rounded-full flex items-center justify-center">
+                  <span className="text-2xl">🌳</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-accent-green">Deep-Skilling</h3>
+                  <p className="text-gray-600">Master What Matters to You</p>
+                </div>
+              </div>
+              <p className="text-gray-700 mb-4">
+                Society says "learn what's in demand." We say "get so good at what you love that demand follows you."
+              </p>
+              <p className="text-gray-700 mb-6">
+                <strong>Deep-skilling</strong> isn't about becoming narrow. It's about becoming so excellent at your craft that you redefine what's valuable.
+              </p>
+              <div className="bg-primary-orange/10 p-4 rounded-lg">
+                <p className="text-primary-orange font-medium italic">
+                  "I mastered traditional weaving and now tech companies hire me to design sustainable materials!" - Aina, 25
+                </p>
+              </div>
+            </div>
+
+            {/* Agile-Skilling */}
+            <div className="storytelling-card bg-white p-8 rounded-2xl">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="w-16 h-16 bg-secondary-blue/20 rounded-full flex items-center justify-center">
+                  <span className="text-2xl">🏄‍♀️</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-secondary-blue">Agile-Skilling</h3>
+                  <p className="text-gray-600">Adapt and Thrive</p>
+                </div>
+              </div>
+              <p className="text-gray-700 mb-4">
+                The world changes fast. Your skills can change faster.
+              </p>
+              <p className="text-gray-700 mb-6">
+                <strong>Agile-skilling</strong> teaches you to spot emerging opportunities and quickly build the skills to ride them. Not because you have to, but because you can.
+              </p>
+              <div className="bg-accent-green/10 p-4 rounded-lg">
+                <p className="text-accent-green font-medium italic">
+                  "When Web3 emerged, I pivoted from graphic design to NFT art direction in 30 days!" - Kevin, 23
+                </p>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Success Story Section */}
+      <section id="success-stories" className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-8">
+              "I was drowning in career advice that made no sense for me."
+            </h2>
+          </div>
+          
+          <div className="grid lg:grid-cols-3 gap-8 items-center">
+            {/* Before */}
+            <div className="storytelling-card bg-gray-50 p-8 rounded-2xl text-center">
+              <div className="text-5xl mb-4">😵‍💫</div>
+              <h3 className="text-lg font-bold text-gray-800 mb-4">Before FutureSu.me</h3>
+              <p className="text-gray-600">
+                Psychology major who loved coding and sustainability but couldn't find a "career path" that fit.
+              </p>
+            </div>
+            
+            {/* During */}
+            <div className="storytelling-card bg-gradient-to-br from-primary-orange/10 to-secondary-blue/10 p-8 rounded-2xl text-center">
+              <div className="text-5xl mb-4">💡</div>
+              <h3 className="text-lg font-bold text-primary-orange mb-4">8 Weeks Later</h3>
+              <p className="text-gray-700">
+                Used skill-authoring to connect her unique combination of interests into a brand new role.
+              </p>
+            </div>
+            
+            {/* After */}
+            <div className="storytelling-card bg-gradient-to-br from-accent-green/10 to-secondary-blue/10 p-8 rounded-2xl text-center">
+              <div className="text-5xl mb-4">🚀</div>
+              <h3 className="text-lg font-bold text-accent-green mb-4">Today</h3>
+              <p className="text-gray-700">
+                <strong>Climate Psychology Researcher</strong> for a green tech startup she helped create.
+              </p>
+            </div>
+          </div>
+          
+          <div className="mt-12 text-center">
+            <div className="bg-neutral-beige p-8 rounded-2xl max-w-2xl mx-auto">
+              <p className="text-xl text-primary-orange font-medium italic mb-4">
+                "FutureSu.me didn't give me a career. It gave me the tools to author my own."
+              </p>
+              <p className="text-gray-600">— Liyana, 23</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Community Section */}
+      <section id="community" className="py-16 bg-neutral-beige">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              100 Skill-Authors,
+            </h2>
+            <h3 className="text-4xl font-bold text-primary-orange mb-8">
+              0 Traditional Career Paths
+            </h3>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <p className="text-lg text-gray-700 leading-relaxed">
+                FutureSu.me cohorts - the first skill-authoring community in Southeast Asia - will be home to over 100 career rebels.
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                We've pulled out the old career advice to make room for acres of creativity, authentic skill combinations, and opportunities right at your doorstep.
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                We're bringing together people who refuse to be categorized, quick skill pivots, and same-day opportunity delivery, so zero traditional career pressure means zero hassle.
+              </p>
+            </div>
+            
+            <div className="storytelling-card bg-white p-8 rounded-2xl">
+              <div className="text-center mb-6">
+                <div className="text-6xl mb-4">🏕️</div>
+                <h3 className="text-2xl font-bold text-secondary-blue">Skill-Author Community</h3>
+              </div>
+              <div className="grid grid-cols-4 gap-4 mb-6">
+                <div className="bg-primary-orange/20 p-3 rounded-lg text-center">
+                  <div className="text-2xl mb-1">🎨</div>
+                  <div className="text-xs text-gray-600">Creative</div>
+                </div>
+                <div className="bg-secondary-blue/20 p-3 rounded-lg text-center">
+                  <div className="text-2xl mb-1">⚡</div>
+                  <div className="text-xs text-gray-600">Tech</div>
+                </div>
+                <div className="bg-accent-green/20 p-3 rounded-lg text-center">
+                  <div className="text-2xl mb-1">🌱</div>
+                  <div className="text-xs text-gray-600">Impact</div>
+                </div>
+                <div className="bg-primary-orange/20 p-3 rounded-lg text-center">
+                  <div className="text-2xl mb-1">🚀</div>
+                  <div className="text-xs text-gray-600">Startup</div>
+                </div>
+              </div>
+              <p className="text-gray-600 text-center italic">
+                Plus, an on-site community space makes it a breeze to connect with fellow skill-authors.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Try It Yourself Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Ready to discover your skill-authoring pathway?
+          </h2>
+          <p className="text-xl text-gray-600 mb-8">
+            Upload your resume and let's see what unique career possibilities emerge from your experience.
+          </p>
+          <Button 
+            size="lg" 
+            className="bg-primary-orange text-white hover:bg-primary-orange/90 px-8 py-3 rounded-full"
+            onClick={() => document.getElementById('upload-section')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Start Your Analysis
+          </Button>
         </div>
       </section>
 
@@ -536,8 +788,8 @@ export default function Home() {
                 <PathwayCard 
                   key={pathway.id} 
                   pathway={pathway} 
-                  selectedGoal={selectedGoal} 
-                  selectedTimeline={selectedTimeline}
+                  selectedGoal={selectedGoal || 'pivot'} 
+                  selectedTimeline={selectedTimeline || '6 months'}
                 />
               ))}
             </div>

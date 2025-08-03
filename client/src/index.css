@@ -24,13 +24,19 @@
   --ring: hsl(20, 14.3%, 4.1%);
   --radius: 0.5rem;
 
-  /* Custom colors from the palette */
+  /* Custom colors from the Culdesac-inspired palette */
+  --primary-orange: hsl(20, 100%, 58%); /* #FF6B35 - Warm, energetic orange */
+  --secondary-blue: hsl(215, 62%, 58%); /* #4A90D9 - Calming blue */
+  --accent-green: hsl(79, 48%, 51%); /* #7CB342 - Growth green */
+  --neutral-beige: hsl(48, 71%, 96%); /* #F7F3E9 - Soft beige backgrounds */
+  
+  /* Legacy colors for backward compatibility */
   --light-purple: hsl(246, 58%, 81%);
   --dark-purple: hsl(248, 26%, 49%);
   --cream: hsl(48, 86%, 94%);
   --sage-green: hsl(73, 36%, 54%);
   --light-orange: hsl(40, 94%, 80%);
-  --vibrant-orange: hsl(16, 89%, 56%);
+  --vibrant-orange: hsl(20, 100%, 58%);
 }
 
 .dark {
@@ -54,6 +60,100 @@
   --destructive-foreground: hsl(0, 0%, 98%);
   --ring: hsl(240, 4.9%, 83.9%);
   --radius: 0.5rem;
+
+  /* Storytelling color palette */
+  --primary-orange: #FF6B35;
+  --secondary-blue: #4A90E2;
+  --accent-green: #5FA774;
+  --neutral-beige: #F8F6F3;
+}
+
+/* Storytelling animations */
+@keyframes skill-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.skill-float {
+  animation: skill-float 3s ease-in-out infinite;
+}
+
+.storytelling-card {
+  transition: all 0.3s ease;
+}
+
+.storytelling-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom color utilities */
+.text-primary-orange {
+  color: var(--primary-orange);
+}
+
+.bg-primary-orange {
+  background-color: var(--primary-orange);
+}
+
+.border-primary-orange {
+  border-color: var(--primary-orange);
+}
+
+.text-secondary-blue {
+  color: var(--secondary-blue);
+}
+
+.bg-secondary-blue {
+  background-color: var(--secondary-blue);
+}
+
+.border-secondary-blue {
+  border-color: var(--secondary-blue);
+}
+
+.text-accent-green {
+  color: var(--accent-green);
+}
+
+.bg-accent-green {
+  background-color: var(--accent-green);
+}
+
+.border-accent-green {
+  border-color: var(--accent-green);
+}
+
+.bg-neutral-beige {
+  background-color: var(--neutral-beige);
+}
+
+.bg-primary-orange\/10 {
+  background-color: rgba(255, 107, 53, 0.1);
+}
+
+.bg-primary-orange\/20 {
+  background-color: rgba(255, 107, 53, 0.2);
+}
+
+.bg-secondary-blue\/10 {
+  background-color: rgba(74, 144, 226, 0.1);
+}
+
+.bg-secondary-blue\/20 {
+  background-color: rgba(74, 144, 226, 0.2);
+}
+
+.bg-accent-green\/10 {
+  background-color: rgba(95, 167, 116, 0.1);
+}
+
+.bg-accent-green\/20 {
+  background-color: rgba(95, 167, 116, 0.2);
 }
 
 @layer base {
@@ -63,6 +163,7 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 }
 
@@ -121,5 +222,69 @@
   
   .border-vibrant-orange {
     border-color: var(--vibrant-orange);
+  }
+
+  /* New Culdesac-inspired utility classes */
+  .bg-primary-orange {
+    background-color: var(--primary-orange);
+  }
+  
+  .bg-secondary-blue {
+    background-color: var(--secondary-blue);
+  }
+  
+  .bg-accent-green {
+    background-color: var(--accent-green);
+  }
+  
+  .bg-neutral-beige {
+    background-color: var(--neutral-beige);
+  }
+  
+  .text-primary-orange {
+    color: var(--primary-orange);
+  }
+  
+  .text-secondary-blue {
+    color: var(--secondary-blue);
+  }
+  
+  .text-accent-green {
+    color: var(--accent-green);
+  }
+
+  /* Friendly, rounded styling */
+  .storytelling-card {
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .storytelling-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Skill symbol animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .skill-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Organic flowing shapes */
+  .organic-shape {
+    border-radius: 50% 30% 70% 40%;
+  }
+
+  /* Warm gradient backgrounds */
+  .warm-gradient {
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-blue));
+  }
+
+  .growth-gradient {
+    background: linear-gradient(135deg, var(--accent-green), var(--primary-orange));
   }
 }
