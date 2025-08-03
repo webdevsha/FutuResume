@@ -176,7 +176,7 @@ export default function PathwayCard({ pathway, selectedGoal, selectedTimeline }:
                   </div>
                   <div className="flex items-start space-x-3">
                     <Badge variant="secondary" className="mt-1">Skills</Badge>
-                    <p className="text-sm text-gray-700">Existing competencies in {pathway.skills.required.slice(0, 2).join(', ')} provide a solid foundation.</p>
+                    <p className="text-sm text-gray-700">Existing competencies in {pathway.skills?.required?.slice(0, 2).map(skill => typeof skill === 'string' ? skill : (skill as any)?.name || skill).join(', ') || 'your current skills'} provide a solid foundation.</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <Badge variant="secondary" className="mt-1">Timeline</Badge>
@@ -192,17 +192,21 @@ export default function PathwayCard({ pathway, selectedGoal, selectedTimeline }:
                   <div>
                     <Badge className="bg-sage-green text-white mb-2">Already Have</Badge>
                     <div className="flex flex-wrap gap-2">
-                      {pathway.skills.required.map(skill => (
-                        <Badge key={skill} variant="outline">{skill}</Badge>
-                      ))}
+                      {pathway.skills?.required?.map((skill, index) => (
+                        <Badge key={`required-${index}`} variant="outline">
+                          {typeof skill === 'string' ? skill : (skill as any)?.name || skill}
+                        </Badge>
+                      )) || <span className="text-gray-500">No specific skills listed</span>}
                     </div>
                   </div>
                   <div>
                     <Badge className="bg-vibrant-orange text-white mb-2">To Develop</Badge>
                     <div className="flex flex-wrap gap-2">
-                      {pathway.skills.toLearn.map(skill => (
-                        <Badge key={skill} variant="outline">{skill}</Badge>
-                      ))}
+                      {pathway.skills?.toLearn?.map((skill, index) => (
+                        <Badge key={`tolearn-${index}`} variant="outline">
+                          {typeof skill === 'string' ? skill : (skill as any)?.name || skill}
+                        </Badge>
+                      )) || <span className="text-gray-500">Skills to be determined</span>}
                     </div>
                   </div>
                 </div>

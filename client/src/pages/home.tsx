@@ -901,8 +901,8 @@ export default function Home() {
                     <div className="space-y-3">
                       {analysis.currentSkills?.slice(0, 5).map((skill, index) => (
                         <SkillProgress
-                          key={skill}
-                          skill={skill}
+                          key={`skill-${index}`}
+                          skill={typeof skill === 'string' ? skill : skill.name}
                           level={85 - index * 5} // Demo progression
                           color="sage-green"
                         />
