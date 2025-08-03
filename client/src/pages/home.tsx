@@ -51,12 +51,17 @@ export default function Home() {
       if (!response.ok) throw new Error('Upload failed');
       return response.json();
     },
-    onSuccess: (data) => {
+    onSuccess: (data, variables) => {
       toast({
         title: "Resume uploaded successfully",
         description: "Your resume has been processed and is ready for analysis.",
       });
-      setUploadedFile(data.file);
+      // Create a file object with the original file data plus the server response
+      const uploadedFileWithId = Object.assign(variables, { 
+        id: data.id,
+        serverFilename: data.filename 
+      });
+      setUploadedFile(uploadedFileWithId);
     },
     onError: () => {
       toast({
