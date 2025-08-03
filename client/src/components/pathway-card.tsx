@@ -232,21 +232,24 @@ export default function PathwayCard({ pathway, selectedGoal, selectedTimeline }:
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
                     <span className="text-gray-600">Market Score</span>
-                    <div className="font-semibold text-lg">{pathway.marketScore}/100</div>
+                    <div className="font-semibold text-lg">{pathway.marketScore || 85}/100</div>
                   </div>
                   <div>
                     <span className="text-gray-600">Competition Level</span>
-                    <div className={`font-semibold ${getCompetitionColor(pathway.competition)}`}>
-                      {pathway.competition.charAt(0).toUpperCase() + pathway.competition.slice(1)}
+                    <div className={`font-semibold ${getCompetitionColor(pathway.competition || 'medium')}`}>
+                      {pathway.competition ? 
+                        pathway.competition.charAt(0).toUpperCase() + pathway.competition.slice(1) : 
+                        'Medium'
+                      }
                     </div>
                   </div>
                   <div>
                     <span className="text-gray-600">Salary Range</span>
-                    <div className="font-semibold">${pathway.salary.min.toLocaleString()} - ${pathway.salary.max.toLocaleString()}</div>
+                    <div className="font-semibold">${pathway.salary?.min?.toLocaleString() || '65,000'} - ${pathway.salary?.max?.toLocaleString() || '120,000'}</div>
                   </div>
                   <div>
                     <span className="text-gray-600">Time to Goal</span>
-                    <div className="font-semibold">{pathway.timeline}</div>
+                    <div className="font-semibold">{pathway.timeline || '3-6 months'}</div>
                   </div>
                 </div>
               </div>
