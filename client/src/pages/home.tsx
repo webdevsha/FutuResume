@@ -518,13 +518,13 @@ export default function Home() {
           <p className="text-xl text-gray-600 mb-8">
             Upload your resume and let's see what unique career possibilities emerge from your experience.
           </p>
-          <Button 
-            size="lg" 
-            className="bg-primary-orange text-white hover:bg-primary-orange/90 px-8 py-3 rounded-full"
-            //onClick={() => document.getElementById('upload-section')?.scrollIntoView({ behavior: 'smooth' })}
-            onClick={() => onclick="redirectToPage(https://futuresume.replit.app/#start-analyze)">
-            Start Your Analysis
-          </Button>
+          <button onclick="redirectToPage()">Start Your Analysis</button>
+
+    <script>
+        function redirectToPage() {
+            window.location.href = 'https://futuresume.replit.app/#start-analyze'; // Replace 'another-page.html' with your desired URL
+        }
+    </script>
         </div>
       </section>
 
