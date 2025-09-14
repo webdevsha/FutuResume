@@ -521,8 +521,8 @@ export default function Home() {
           <Button 
             size="lg" 
             className="bg-primary-orange text-white hover:bg-primary-orange/90 px-8 py-3 rounded-full"
-            onClick={() => document.getElementById('upload-section')?.scrollIntoView({ behavior: 'smooth' })}
-          >
+            //onClick={() => document.getElementById('upload-section')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => onclick="redirectToPage(https://futuresume.replit.app/#start-analyze)">
             Start Your Analysis
           </Button>
         </div>
