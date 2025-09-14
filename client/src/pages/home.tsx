@@ -40,12 +40,11 @@ export default function Home() {
   const { toast } = useToast();
 
   // File upload mutation
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || '';
   const uploadMutation = useMutation({
     mutationFn: async (file: File) => {
       const formData = new FormData();
       formData.append('resume', file);
-      const response = await fetch(`${backendUrl}/api/upload-resume`, {
+      const response = await fetch('/api/upload-resume', {
         method: 'POST',
         body: formData,
       });
