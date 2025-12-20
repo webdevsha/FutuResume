@@ -518,13 +518,13 @@ export default function Home() {
           <p className="text-xl text-gray-600 mb-8">
             Upload your resume and let's see what unique career possibilities emerge from your experience.
           </p>
-          <button onclick="redirectToPage()">Start Your Analysis</button>
-
-    <script>
-        function redirectToPage() {
-            window.location.href = 'https://futuresume.replit.app/#start-analyze'; // Replace 'another-page.html' with your desired URL
-        }
-    </script>
+          <Button 
+            size="lg" 
+            className="bg-primary-orange text-white hover:bg-primary-orange/90 px-8 py-3 rounded-full"
+            onClick={() => document.getElementById('upload-section')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Start Your Analysis
+          </Button>
         </div>
       </section>
 
@@ -902,7 +902,7 @@ export default function Home() {
                       {analysis.currentSkills?.slice(0, 5).map((skill, index) => (
                         <SkillProgress
                           key={`skill-${index}`}
-                          skill={typeof skill === 'string' ? skill : skill.name}
+                          skill={typeof skill === 'string' ? skill : (skill as any).name}
                           level={85 - index * 5} // Demo progression
                           color="sage-green"
                         />

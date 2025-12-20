@@ -94,9 +94,9 @@ export class MemStorage implements IStorage {
       id,
       resumeId: insertAnalysis.resumeId,
       goal: insertAnalysis.goal,
-      currentSkills: Array.isArray(insertAnalysis.currentSkills) ? insertAnalysis.currentSkills : null,
-      pathways: Array.isArray(insertAnalysis.pathways) ? insertAnalysis.pathways : null,
-      marketData: insertAnalysis.marketData || null,
+      currentSkills: (Array.isArray(insertAnalysis.currentSkills) ? insertAnalysis.currentSkills : null) as any,
+      pathways: (Array.isArray(insertAnalysis.pathways) ? insertAnalysis.pathways : null) as any,
+      marketData: (insertAnalysis.marketData || null) as any,
       createdAt: new Date()
     };
     this.careerAnalyses.set(id, analysis);
