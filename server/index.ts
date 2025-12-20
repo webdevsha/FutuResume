@@ -56,12 +56,18 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on the port specified in the environment variable PORT
-  // Other ports are firewalled. Default to 5000 if not specified.
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = parseInt(process.env.PORT || '5000', 10);
-  server.listen(port, "0.0.0.0", () => {
-    log(`serving on port ${port}`);
+  // Menggunakan port dari environment variable (Dyad/Cloud) 
+  // atau 3000 sebagai fallback (Local)
+  const PORT = parseInt(process.env.PORT || '3000', 10);
+  
+  server.listen(PORT, "0.0.0.0", () => {
+    console.log(`🚀 Aplikasi sedang berjalan di: http://localhost:${PORT}`);
+    console.log(`💡 Jika di Dyad, pastikan port ini di-forward atau dibuka.`);
+  });
+
+  process.on('SIGTERM', () => {
+    server.close(() => {
+      console.log('Proses ditutup secara bersih.');
+    });
   });
 })();
