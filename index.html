@@ -3,389 +3,596 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FutuMatch — Author your career identity</title>
+<title>FutuMatch — Career Proof Intelligence Platform</title>
+<meta name="description" content="Recruiters don't hire skills. They hire evidence. Upload your CV and any job description. See exactly what proof is missing and build a portfolio identity that makes you impossible to ignore.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --black: #0A0A0A;
-    --page: #FAFAF8;
-    --surface: #F0EFE9;
-    --surface-2: #EAEAE3;
-    --teal: #1D9E75;
-    --teal-dark: #0F6E56;
-    --teal-tint: #E8F5F0;
-    --teal-mid: #9FE1CB;
-    --text: #0A0A0A;
-    --text-2: #4A4A44;
-    --text-3: #8A8A82;
-    --border: rgba(10,10,10,0.1);
-    --border-2: rgba(10,10,10,0.16);
-    --red-tint: #FEF0EE;
-    --red: #C94F3A;
-    --amber-tint: #FEF6E4;
-    --amber: #A06D14;
-    --radius: 10px;
-    --radius-lg: 16px;
-    --font-display: 'Crimson Pro', Georgia, serif;
-    --font-body: 'DM Sans', system-ui, sans-serif;
-  }
+:root {
+  --black:       #0A0A0A;
+  --ink:         #0E2A1E;
+  --ink-mid:     #163623;
+  --ink-border:  rgba(255,255,255,0.08);
+  --ink-text:    rgba(255,255,255,0.55);
+  --ink-muted:   rgba(255,255,255,0.3);
+  --page:        #FAFAF8;
+  --surface:     #F0EFE9;
+  --surface-2:   #E6E5DE;
+  --teal:        #1D9E75;
+  --teal-dark:   #0F6E56;
+  --teal-tint:   #E8F5F0;
+  --teal-mid:    #9FE1CB;
+  --text:        #0A0A0A;
+  --text-2:      #4A4A44;
+  --text-3:      #8A8A82;
+  --border:      rgba(10,10,10,0.09);
+  --border-2:    rgba(10,10,10,0.15);
+  --red:         #C94F3A;
+  --red-tint:    #FEF0EE;
+  --amber:       #A06D14;
+  --amber-tint:  #FEF6E4;
+  --amber-mid:   #F7C97A;
+  --radius:      10px;
+  --radius-lg:   16px;
+  --font-d:      'Crimson Pro', Georgia, serif;
+  --font-b:      'DM Sans', system-ui, sans-serif;
+}
 
-  html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-b);
+  background: var(--page);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
 
-  body {
-    font-family: var(--font-body);
-    background: var(--page);
-    color: var(--text);
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 2rem; height: 56px;
+  background: rgba(250,250,248,0.9);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.logo { font-family: var(--font-b); font-size: 17px; font-weight: 500; letter-spacing: -0.3px; color: var(--text); text-decoration: none; }
+.logo em { color: var(--teal); font-style: normal; }
+.nav-r { display: flex; align-items: center; gap: 1.5rem; }
+.nav-link { font-size: 14px; color: var(--text-2); text-decoration: none; }
+.nav-link:hover { color: var(--text); }
+.nav-cta {
+  font-family: var(--font-b); font-size: 13px; font-weight: 500;
+  padding: 7px 18px; border-radius: var(--radius);
+  background: var(--teal); color: #fff; border: none; cursor: pointer;
+  transition: background 0.15s;
+}
+.nav-cta:hover { background: var(--teal-dark); }
 
-  /* NAV */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0 2rem; height: 56px;
-    background: rgba(250,250,248,0.88);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .logo {
-    font-family: var(--font-body);
-    font-size: 17px; font-weight: 500;
-    letter-spacing: -0.3px; color: var(--text); text-decoration: none;
-  }
-  .logo em { color: var(--teal); font-style: normal; }
-  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-  .nav-link {
-    font-size: 14px; color: var(--text-2); text-decoration: none;
-    transition: color 0.15s;
-  }
-  .nav-link:hover { color: var(--text); }
-  .nav-cta {
-    font-family: var(--font-body); font-size: 13px; font-weight: 500;
-    padding: 7px 18px; border-radius: var(--radius);
-    background: var(--teal); color: #fff; border: none; cursor: pointer;
-    transition: background 0.15s;
-  }
-  .nav-cta:hover { background: var(--teal-dark); }
+/* ── HERO ── */
+.hero {
+  max-width: 1040px; margin: 0 auto;
+  padding: 5rem 2rem 4rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+  align-items: start;
+}
+.hero-left { padding-top: 0.5rem; }
 
-  /* HERO */
-  .hero {
-    max-width: 860px; margin: 0 auto;
-    padding: 5rem 2rem 2rem;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-    align-items: start;
-  }
-  .hero-left { padding-top: 0.5rem; }
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 12px; font-weight: 500; letter-spacing: 0.3px;
-    color: var(--teal-dark); background: var(--teal-tint);
-    border: 1px solid var(--teal-mid); padding: 4px 12px;
-    border-radius: 20px; margin-bottom: 1.5rem;
-  }
-  .eyebrow svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; }
-  .hero-title {
-    font-family: var(--font-display);
-    font-size: 46px; font-weight: 400; line-height: 1.15;
-    letter-spacing: -0.5px; color: var(--text);
-    margin-bottom: 1.25rem;
-  }
-  .hero-title strong { font-weight: 500; color: var(--teal); font-style: italic; }
-  .hero-body {
-    font-size: 16px; line-height: 1.7; color: var(--text-2);
-    margin-bottom: 1.75rem;
-  }
-  .hero-actions { display: flex; flex-direction: column; gap: 10px; }
-  .cta-primary {
-    font-family: var(--font-body); font-size: 14px; font-weight: 500;
-    padding: 12px 24px; border-radius: var(--radius);
-    background: var(--teal); color: #fff; border: none; cursor: pointer;
-    text-align: center; text-decoration: none; display: inline-block;
-    transition: background 0.15s;
-  }
-  .cta-primary:hover { background: var(--teal-dark); }
-  .cta-note { font-size: 12px; color: var(--text-3); }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.3px;
+  color: var(--teal-dark); background: var(--teal-tint);
+  border: 1px solid var(--teal-mid); padding: 4px 12px;
+  border-radius: 20px; margin-bottom: 1.75rem; white-space: nowrap;
+}
+.hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); display: inline-block; flex-shrink: 0; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.75)} }
 
-  /* DEMO WIDGET — the hero right */
-  .demo-card {
-    background: #fff;
-    border: 1px solid var(--border-2);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    box-shadow: 0 2px 16px rgba(10,10,10,0.06), 0 0 0 1px rgba(10,10,10,0.03);
-  }
-  .demo-label {
-    font-size: 11px; font-weight: 500; letter-spacing: 0.5px;
-    text-transform: uppercase; color: var(--text-3);
-    margin-bottom: 1rem; display: flex; align-items: center; gap: 6px;
-  }
-  .demo-label::before {
-    content: '';
-    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--teal);
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
-  }
-  .demo-field { margin-bottom: 0.875rem; }
-  .demo-field label {
-    display: block; font-size: 12px; font-weight: 500;
-    color: var(--text-2); margin-bottom: 0.375rem;
-  }
-  .demo-field input, .demo-field textarea {
-    width: 100%; font-family: var(--font-body); font-size: 13px;
-    padding: 9px 12px; border-radius: 8px;
-    border: 1px solid var(--border-2); background: var(--page);
-    color: var(--text); outline: none; resize: none;
-    transition: border-color 0.15s, box-shadow 0.15s;
-  }
-  .demo-field input:focus, .demo-field textarea:focus {
-    border-color: var(--teal);
-    box-shadow: 0 0 0 3px rgba(29,158,117,0.12);
-  }
-  .demo-field textarea { height: 72px; }
-  .demo-btn {
-    width: 100%; font-family: var(--font-body); font-size: 13px; font-weight: 500;
-    padding: 10px; border-radius: 8px;
-    background: var(--teal); color: #fff; border: none; cursor: pointer;
-    transition: background 0.15s; display: flex; align-items: center;
-    justify-content: center; gap: 6px;
-  }
-  .demo-btn:hover:not(:disabled) { background: var(--teal-dark); }
-  .demo-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-  .demo-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
+.hero h1 {
+  font-family: var(--font-d);
+  font-size: 54px; font-weight: 400; line-height: 1.1;
+  letter-spacing: -0.8px; color: var(--text);
+  margin-bottom: 1.25rem;
+}
+.hero h1 em {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-  /* RESULT */
-  .demo-result { margin-top: 1rem; display: none; }
-  .demo-result.visible { display: block; }
-  .result-divider { height: 1px; background: var(--border); margin-bottom: 1rem; }
-  .score-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
-  .score-num {
-    font-family: var(--font-display); font-size: 40px; font-weight: 500;
-    line-height: 1; color: var(--text);
-  }
-  .score-meta { flex: 1; }
-  .score-label { font-size: 13px; font-weight: 500; color: var(--text-2); }
-  .score-sub { font-size: 12px; color: var(--text-3); margin-top: 1px; }
-  .score-bar {
-    width: 100%; height: 4px; background: var(--surface-2);
-    border-radius: 2px; overflow: hidden; margin-top: 6px;
-  }
-  .score-fill {
-    height: 100%; background: var(--teal);
-    border-radius: 2px; transition: width 1s ease-out;
-    width: 0;
-  }
+.hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 0.625rem; }
+.btn-primary {
+  font-family: var(--font-b); font-size: 14px; font-weight: 500;
+  padding: 12px 22px; border-radius: var(--radius);
+  background: var(--teal); color: #fff; border: none; cursor: pointer;
+  text-decoration: none; display: inline-block;
+  transition: background 0.15s;
+}
+.btn-primary:hover { background: var(--teal-dark); }
+.btn-outline {
+  font-family: var(--font-b); font-size: 14px;
+  padding: 11px 20px; border-radius: var(--radius);
+  border: 1px solid var(--border-2); background: transparent;
+  color: var(--text); cursor: pointer; text-decoration: none; display: inline-block;
+  transition: background 0.15s;
+}
+.btn-outline:hover { background: var(--surface); }
+.hero-note { font-size: 12px; color: var(--text-3); line-height: 1.6; }
 
-  .gaps-title { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-3); margin-bottom: 0.5rem; }
-  .gap-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 0.875rem; }
-  .gap-tag {
-    font-size: 12px; padding: 3px 10px; border-radius: 6px;
-    background: var(--red-tint); color: var(--red);
-    border: 1px solid rgba(201,79,58,0.2);
-  }
-  .gap-tag.present {
-    background: var(--teal-tint); color: var(--teal-dark);
-    border-color: var(--teal-mid);
-  }
+.pain-bullets {
+  display: flex; flex-direction: column; gap: 0;
+  margin-bottom: 1.75rem;
+}
+.pb {
+  font-size: 15px; color: var(--text-2); line-height: 1.5;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.pb:first-child { border-top: 1px solid var(--border); }
+.pb strong { color: var(--text); font-weight: 500; }
 
-  .insight-box {
-    background: var(--surface);
-    border-radius: 8px; padding: 0.75rem 1rem;
-    font-size: 13px; line-height: 1.6; color: var(--text-2);
-  }
-  .insight-box strong { color: var(--text); font-weight: 500; }
+/* HERO RIGHT — inline mini form card */
+.hero-card {
+  background: #fff; border: 1px solid var(--border-2);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  box-shadow: 0 12px 40px rgba(10,10,10,0.08), 0 0 0 1px rgba(10,10,10,0.04);
+  position: sticky; top: 72px;
+}
+.hc-label {
+  font-size: 11px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--text-3); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 6px;
+}
+.hc-label::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+  background: var(--teal); display: inline-block;
+  animation: pulse 2s ease-in-out infinite;
+}
+.hc-field { margin-bottom: 0.75rem; }
+.hc-field label { display: block; font-size: 12px; font-weight: 500; color: var(--text-2); margin-bottom: 0.3rem; }
+.hc-field input, .hc-field textarea {
+  width: 100%; font-family: var(--font-b); font-size: 13px;
+  padding: 9px 12px; border-radius: 8px;
+  border: 1px solid var(--border-2); background: var(--page);
+  color: var(--text); outline: none; resize: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.hc-field input:focus, .hc-field textarea:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(29,158,117,0.1);
+}
+.hc-field textarea { height: 72px; }
+.hc-btn {
+  width: 100%; font-family: var(--font-b); font-size: 13px; font-weight: 500;
+  padding: 11px; border-radius: 8px; border: none; cursor: pointer;
+  background: var(--teal); color: #fff;
+  transition: background 0.15s; margin-bottom: 0;
+}
+.hc-btn:hover:not(:disabled) { background: var(--teal-dark); }
+.hc-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-  .demo-timer {
-    font-size: 11px; color: var(--text-3); text-align: right;
-    margin-top: 0.5rem;
-  }
+/* hero card result */
+.hc-result { display: none; border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem; }
+.hc-result.visible { display: block; }
+.hc-score-row { display: flex; align-items: center; gap: 12px; margin-bottom: 0.875rem; }
+.hc-score-num { font-family: var(--font-d); font-size: 48px; font-weight: 500; color: var(--text); line-height: 1; flex-shrink: 0; }
+.hc-score-meta { flex: 1; }
+.hc-score-label { font-size: 13px; font-weight: 500; color: var(--text); }
+.hc-score-sub { font-size: 11px; color: var(--text-3); margin-top: 1px; }
+.hc-bar { height: 4px; background: var(--surface-2); border-radius: 2px; overflow: hidden; margin-top: 8px; }
+.hc-fill { height: 100%; background: var(--teal); border-radius: 2px; transition: width 1s ease-out; width: 0; }
+.hc-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 0.75rem; }
+.hc-tag { font-size: 11px; padding: 2px 8px; border-radius: 5px; border: 1px solid; }
+.hc-tag.has { background: var(--teal-tint); color: var(--teal-dark); border-color: var(--teal-mid); }
+.hc-tag.miss { background: var(--red-tint); color: var(--red); border-color: rgba(201,79,58,0.2); }
+.hc-insight { font-size: 12px; color: var(--text-2); line-height: 1.65; background: var(--surface); border-radius: 7px; padding: 0.625rem 0.75rem; margin-bottom: 0.875rem; }
+.hc-cta-full {
+  width: 100%; font-family: var(--font-b); font-size: 12px; font-weight: 500;
+  padding: 9px 12px; border-radius: 7px; border: 1px solid var(--border-2); cursor: pointer;
+  background: transparent; color: var(--text); text-align: center;
+  transition: background 0.15s; display: block;
+}
+.hc-cta-full:hover { background: var(--surface); }
+.hc-note { font-size: 11px; color: var(--text-3); text-align: center; margin-top: 0.5rem; }
+.hc-error { display: none; font-size: 12px; color: var(--red); margin-top: 0.625rem; padding: 7px 10px; background: var(--red-tint); border-radius: 6px; }
+.hc-error.visible { display: block; }
 
-  /* LOADING STATE */
-  .loading-dots { display: flex; gap: 4px; justify-content: center; align-items: center; }
-  .loading-dots span {
-    width: 5px; height: 5px; border-radius: 50%; background: #fff;
-    animation: dot-bounce 1.2s ease-in-out infinite;
-  }
-  .loading-dots span:nth-child(2) { animation-delay: 0.15s; }
-  .loading-dots span:nth-child(3) { animation-delay: 0.3s; }
-  @keyframes dot-bounce {
-    0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; }
-    40% { transform: scale(1); opacity: 1; }
-  }
+/* ── STATS — new 2×2 grid design ── */
+.stat-section {
+  background: var(--ink);
+  padding: 3rem 2rem;
+}
+.stat-inner {
+  max-width: 1000px; margin: 0 auto;
+}
+.stat-header {
+  font-family: var(--font-d); font-size: 15px; font-weight: 400;
+  color: rgba(255,255,255,0.35); margin-bottom: 0.25rem;
+  letter-spacing: 0.2px;
+}
+.stat-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--ink-border);
+  border: 1px solid var(--ink-border);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.stat-card {
+  background: var(--ink); padding: 1.75rem 2rem;
+  display: flex; gap: 1.25rem; align-items: flex-start;
+}
+.stat-card:hover { background: var(--ink-mid); transition: background 0.2s; }
+.stat-num-wrap { flex-shrink: 0; }
+.stat-num {
+  font-family: var(--font-d); font-size: 52px; font-weight: 500;
+  color: var(--teal-mid); line-height: 1; display: block;
+}
+.stat-source { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 4px; letter-spacing: 0.2px; }
+.stat-copy { padding-top: 6px; }
+.stat-headline { font-size: 15px; font-weight: 500; color: #fff; margin-bottom: 4px; line-height: 1.35; }
+.stat-detail { font-size: 13px; color: var(--ink-text); line-height: 1.6; }
 
-  /* SECTION SCAFFOLD */
-  .section-wrap { max-width: 860px; margin: 0 auto; padding: 5rem 2rem; }
-  .section-eyebrow {
-    font-size: 12px; font-weight: 500; text-transform: uppercase;
-    letter-spacing: 0.5px; color: var(--teal); margin-bottom: 0.625rem;
-  }
-  .section-title {
-    font-family: var(--font-display);
-    font-size: 34px; font-weight: 400; line-height: 1.25;
-    letter-spacing: -0.3px; margin-bottom: 0.75rem;
-  }
-  .section-body { font-size: 16px; color: var(--text-2); line-height: 1.7; max-width: 520px; }
-  .divider { height: 1px; background: var(--border); max-width: 860px; margin: 0 auto; }
+/* ── SECTION BASE ── */
+.wrap { max-width: 900px; margin: 0 auto; padding: 5rem 2rem; }
+.divider { height: 1px; background: var(--border); }
 
-  /* HOW IT WORKS */
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
-  .step { }
-  .step-num {
-    font-family: var(--font-display); font-size: 36px; font-weight: 400;
-    color: var(--teal-mid); line-height: 1; margin-bottom: 0.75rem;
-  }
-  .step h3 { font-size: 15px; font-weight: 500; margin-bottom: 0.4rem; }
-  .step p { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+.eyebrow {
+  font-size: 12px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--teal); margin-bottom: 0.625rem;
+  display: block;
+}
+.section-h {
+  font-family: var(--font-d); font-size: 40px; font-weight: 400;
+  line-height: 1.2; letter-spacing: -0.4px; margin-bottom: 0.75rem;
+}
+.section-sub { font-size: 16px; color: var(--text-2); line-height: 1.7; max-width: 540px; }
 
-  /* FEATURES */
-  .features-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 1px; background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg); overflow: hidden;
-    margin-top: 3rem;
-  }
-  .feat {
-    background: var(--page); padding: 1.75rem;
-  }
-  .feat-icon {
-    width: 34px; height: 34px; border-radius: 8px;
-    background: var(--teal-tint);
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 0.875rem;
-  }
-  .feat-icon svg { width: 16px; height: 16px; fill: none; stroke: var(--teal); stroke-width: 2; }
-  .feat h3 { font-size: 14px; font-weight: 500; margin-bottom: 0.375rem; }
-  .feat p { font-size: 13px; color: var(--text-2); line-height: 1.65; }
-  .feat .badge-paid {
-    display: inline-block; font-size: 10px; font-weight: 500;
-    padding: 2px 8px; border-radius: 4px; margin-left: 6px;
-    background: var(--teal-tint); color: var(--teal-dark);
-    border: 1px solid var(--teal-mid); vertical-align: middle;
-  }
+/* ── PAIN SECTION ── */
+.pain-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--border); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden; margin-top: 3rem;
+}
+.pain-card { background: var(--page); padding: 2rem 1.75rem; }
+.pain-num {
+  font-family: var(--font-d); font-size: 52px; font-weight: 400;
+  color: var(--text-2); line-height: 1; margin-bottom: 0.25rem;
+  opacity: 0.25;
+}
+.pain-stat {
+  font-family: var(--font-d); font-size: 28px; font-weight: 500;
+  color: var(--red); line-height: 1.1; margin-bottom: 0.75rem;
+}
+.pain-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 0.5rem; }
+.pain-card p { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+.pain-source { font-size: 11px; color: var(--text-3); margin-top: 0.75rem; font-style: italic; }
 
-  /* PRICING */
-  .pricing-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-    margin-top: 3rem;
-  }
-  .price-card {
-    background: #fff; border: 1px solid var(--border-2);
-    border-radius: var(--radius-lg); padding: 1.5rem;
-  }
-  .price-card.featured {
-    border-color: var(--teal);
-    box-shadow: 0 0 0 1px var(--teal);
-  }
-  .price-tier {
-    font-size: 12px; font-weight: 500; text-transform: uppercase;
-    letter-spacing: 0.4px; color: var(--text-3); margin-bottom: 0.875rem;
-  }
-  .price-main {
-    font-family: var(--font-display);
-    font-size: 36px; font-weight: 400; color: var(--text);
-    line-height: 1; margin-bottom: 0.25rem;
-  }
-  .price-main small {
-    font-family: var(--font-body);
-    font-size: 14px; font-weight: 400; color: var(--text-3);
-  }
-  .price-desc { font-size: 13px; color: var(--text-3); margin-bottom: 1.25rem; }
-  .price-feats {
-    list-style: none; border-top: 1px solid var(--border); padding-top: 1rem;
-    display: flex; flex-direction: column; gap: 0.5rem;
-  }
-  .price-feats li {
-    font-size: 13px; color: var(--text-2);
-    display: flex; gap: 8px; align-items: flex-start;
-  }
-  .price-feats li svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 2px; }
-  .price-feats li.has { color: var(--text-2); }
-  .price-feats li.has svg { stroke: var(--teal); fill: none; }
-  .price-feats li.no { color: var(--text-3); }
-  .price-feats li.no svg { stroke: var(--text-3); fill: none; }
-  .price-card-cta {
-    width: 100%; margin-top: 1.25rem;
-    font-family: var(--font-body); font-size: 13px; font-weight: 500;
-    padding: 9px; border-radius: 8px; cursor: pointer;
-    border: 1px solid var(--border-2); background: transparent; color: var(--text);
-    transition: background 0.15s;
-  }
-  .price-card-cta:hover { background: var(--surface); }
-  .price-card.featured .price-card-cta {
-    background: var(--teal); color: #fff; border-color: var(--teal);
-  }
-  .price-card.featured .price-card-cta:hover { background: var(--teal-dark); }
+/* ── SOLUTION ROWS ── */
+.solution-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: center; padding: 4rem 0;
+}
+.solution-row + .solution-row { border-top: 1px solid var(--border); }
+.solution-row.flip { direction: rtl; }
+.solution-row.flip > * { direction: ltr; }
+.sol-label {
+  font-size: 11px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--teal);
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-bottom: 0.875rem;
+}
+.sol-label::before {
+  content: ''; display: inline-block; width: 20px; height: 1px;
+  background: var(--teal);
+}
+.sol-h {
+  font-family: var(--font-d); font-size: 30px; font-weight: 400;
+  line-height: 1.25; letter-spacing: -0.3px; margin-bottom: 0.875rem;
+}
+.sol-body { font-size: 15px; color: var(--text-2); line-height: 1.7; margin-bottom: 1.25rem; }
+.sol-callout {
+  background: var(--surface); border-radius: 10px;
+  padding: 1rem 1.25rem; font-size: 13px; color: var(--text-2);
+  line-height: 1.65; border-left: 3px solid var(--teal);
+}
+.sol-callout strong { color: var(--text); font-weight: 500; }
 
-  /* COURSE STRIP */
-  .course-strip {
-    background: var(--teal);
-    border-radius: var(--radius-lg); padding: 2.5rem;
-    display: flex; align-items: center; gap: 2rem;
-    margin-top: 4rem; flex-wrap: wrap;
-  }
-  .course-strip-text { flex: 1; min-width: 280px; }
-  .course-strip-text h2 {
-    font-family: var(--font-display);
-    font-size: 26px; font-weight: 400; color: #fff;
-    line-height: 1.3; margin-bottom: 0.5rem;
-  }
-  .course-strip-text p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.65; }
-  .course-strip-cta {
-    font-family: var(--font-body); font-size: 13px; font-weight: 500;
-    padding: 10px 22px; border-radius: 8px;
-    background: #fff; color: var(--teal); border: none; cursor: pointer;
-    white-space: nowrap; transition: opacity 0.15s;
-  }
-  .course-strip-cta:hover { opacity: 0.9; }
+/* OUTPUT CARD visual */
+.output-card {
+  background: #fff; border: 1px solid var(--border-2);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  box-shadow: 0 2px 20px rgba(10,10,10,0.06);
+}
+.oc-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 1.25rem;
+}
+.oc-icon {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: var(--teal-tint);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.oc-icon svg { width: 16px; height: 16px; stroke: var(--teal); fill: none; stroke-width: 2; }
+.oc-title { font-size: 14px; font-weight: 500; }
+.oc-badge {
+  margin-left: auto; font-size: 10px; font-weight: 500; padding: 2px 8px;
+  border-radius: 4px; background: var(--teal-tint); color: var(--teal-dark);
+  border: 1px solid var(--teal-mid);
+}
+.oc-body { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+.oc-list { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-top: 0.875rem; }
+.oc-list li { display: flex; gap: 8px; font-size: 13px; color: var(--text-2); align-items: flex-start; }
+.oc-list li::before {
+  content: ''; flex-shrink: 0;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--teal-tint); border: 1px solid var(--teal-mid);
+  margin-top: 2px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='%231D9E75' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 7l2.5 2.5 5.5-5'/%3E%3C/svg%3E");
+  background-size: contain;
+}
 
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border); padding: 2rem;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 1rem;
-  }
-  .footer-logo { font-size: 15px; font-weight: 500; color: var(--text); }
-  .footer-logo em { color: var(--teal); font-style: normal; }
-  .footer-note { font-size: 12px; color: var(--text-3); }
-  .footer-links { display: flex; gap: 1.25rem; }
-  .footer-links a { font-size: 12px; color: var(--text-3); text-decoration: none; }
-  .footer-links a:hover { color: var(--text); }
+/* Gap bar visual */
+.gap-bar { margin-top: 1rem; }
+.gap-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.gap-key { font-size: 12px; color: var(--text-2); width: 130px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gap-track { flex: 1; height: 6px; background: var(--surface-2); border-radius: 3px; overflow: hidden; }
+.gap-fill-g { height: 100%; background: var(--teal); border-radius: 3px; }
+.gap-fill-r { height: 100%; background: var(--red); border-radius: 3px; opacity: 0.6; }
+.gap-pct { font-size: 11px; color: var(--text-3); width: 30px; text-align: right; flex-shrink: 0; }
 
-  /* ERROR STATE */
-  .demo-error {
-    display: none; margin-top: 0.75rem;
-    font-size: 12px; color: var(--red); padding: 8px 12px;
-    background: var(--red-tint); border-radius: 6px;
-    border: 1px solid rgba(201,79,58,0.2);
-  }
-  .demo-error.visible { display: block; }
+/* Income visual */
+.income-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 1rem; }
+.income-item {
+  background: var(--surface); border-radius: 8px; padding: 0.875rem;
+  border: 1px solid var(--border);
+}
+.income-item h4 { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.income-item p { font-size: 11px; color: var(--text-3); line-height: 1.5; }
+.income-item .tag {
+  display: inline-block; font-size: 10px; padding: 1px 7px;
+  border-radius: 4px; margin-top: 6px;
+  background: var(--amber-tint); color: var(--amber);
+  border: 1px solid var(--amber-mid);
+}
 
-  /* RESPONSIVE */
-  @media (max-width: 680px) {
-    .hero { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 3rem; }
-    .hero-title { font-size: 36px; }
-    .steps { grid-template-columns: 1fr; gap: 1.5rem; }
-    .features-grid { grid-template-columns: 1fr; }
-    .pricing-grid { grid-template-columns: 1fr; }
-    .course-strip { flex-direction: column; }
-    .nav-right .nav-link { display: none; }
-  }
+/* ── LIVE DEMO ── */
+.demo-wrap {
+  background: var(--ink); padding: 5rem 2rem;
+}
+.demo-inner { max-width: 720px; margin: 0 auto; }
+.demo-inner .eyebrow { color: var(--teal-mid); }
+.demo-h {
+  font-family: var(--font-d); font-size: 36px; font-weight: 400;
+  color: #fff; line-height: 1.25; letter-spacing: -0.3px; margin-bottom: 0.75rem;
+}
+.demo-sub { font-size: 15px; color: var(--ink-text); margin-bottom: 2rem; }
 
-  @media (prefers-reduced-motion: reduce) {
-    .demo-label::before { animation: none; }
-    .loading-dots span { animation: none; opacity: 1; transform: none; }
-    .score-fill { transition: none; }
-  }
+.demo-card {
+  background: var(--ink-mid); border: 1px solid var(--ink-border);
+  border-radius: var(--radius-lg); padding: 1.75rem;
+}
+.demo-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.demo-field label { display: block; font-size: 12px; font-weight: 500; color: var(--ink-text); margin-bottom: 0.375rem; }
+.demo-field input, .demo-field textarea {
+  width: 100%; font-family: var(--font-b); font-size: 13px;
+  padding: 10px 13px; border-radius: 8px;
+  border: 1px solid var(--ink-border);
+  background: rgba(255,255,255,0.06); color: #fff; outline: none; resize: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.demo-field input::placeholder, .demo-field textarea::placeholder { color: var(--ink-muted); }
+.demo-field input:focus, .demo-field textarea:focus {
+  border-color: var(--teal); box-shadow: 0 0 0 3px rgba(29,158,117,0.2);
+}
+.demo-field.full { grid-column: 1 / -1; }
+.demo-field textarea { height: 76px; }
+
+.demo-btn {
+  width: 100%; font-family: var(--font-b); font-size: 14px; font-weight: 500;
+  padding: 12px; border-radius: 8px; border: none; cursor: pointer;
+  background: var(--teal); color: #fff;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  transition: background 0.15s;
+}
+.demo-btn:hover:not(:disabled) { background: var(--teal-dark); }
+.demo-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* RESULT */
+.demo-result { display: none; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--ink-border); }
+.demo-result.visible { display: block; }
+
+.result-row { display: grid; grid-template-columns: auto 1fr; gap: 1.25rem; align-items: start; margin-bottom: 1.5rem; }
+.result-score-block { text-align: center; }
+.result-score-num { font-family: var(--font-d); font-size: 52px; font-weight: 500; color: #fff; line-height: 1; }
+.result-score-word { font-size: 11px; color: var(--ink-muted); margin-top: 4px; }
+.score-bar { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; margin-top: 8px; width: 60px; }
+.score-fill { height: 100%; background: var(--teal); border-radius: 2px; transition: width 1s ease-out; width: 0; }
+
+.result-labels { padding-top: 0.25rem; }
+.result-label-main { font-size: 15px; font-weight: 500; color: #fff; margin-bottom: 0.5rem; }
+.result-insight { font-size: 13px; color: var(--ink-text); line-height: 1.65; }
+
+.result-tags-wrap { margin-bottom: 1.25rem; }
+.result-tags-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; color: var(--ink-muted); margin-bottom: 0.5rem; }
+.result-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.rtag {
+  font-size: 12px; padding: 3px 10px; border-radius: 6px;
+  border: 1px solid;
+}
+.rtag.has { background: rgba(29,158,117,0.15); color: var(--teal-mid); border-color: rgba(29,158,117,0.3); }
+.rtag.miss { background: rgba(201,79,58,0.12); color: #F5A090; border-color: rgba(201,79,58,0.25); }
+
+.result-next {
+  background: rgba(255,255,255,0.04); border-radius: 10px;
+  padding: 1rem 1.25rem; border: 1px solid var(--ink-border);
+}
+.result-next-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; color: var(--ink-muted); margin-bottom: 0.5rem; }
+.result-next-text { font-size: 13px; color: var(--ink-text); line-height: 1.65; }
+.result-next-text strong { color: #fff; }
+
+.demo-note { font-size: 11px; color: var(--ink-muted); text-align: right; margin-top: 0.625rem; }
+.demo-error { display: none; font-size: 12px; color: #F5A090; margin-top: 0.75rem; padding: 8px 12px; background: rgba(201,79,58,0.12); border-radius: 6px; border: 1px solid rgba(201,79,58,0.2); }
+.demo-error.visible { display: block; }
+
+/* loading dots */
+.ldots { display: flex; gap: 4px; justify-content: center; }
+.ldots span { width: 5px; height: 5px; border-radius: 50%; background: #fff; animation: db 1.2s ease-in-out infinite; }
+.ldots span:nth-child(2){animation-delay:.15s} .ldots span:nth-child(3){animation-delay:.3s}
+@keyframes db { 0%,80%,100%{transform:scale(.7);opacity:.5} 40%{transform:scale(1);opacity:1} }
+
+/* ── HOW IT WORKS ── */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3rem; position: relative; }
+.steps::before {
+  content: '';
+  position: absolute; top: 28px; left: calc(12.5% + 16px); right: calc(12.5% + 16px);
+  height: 1px; background: var(--border-2); z-index: 0;
+}
+.step { padding: 0 1.25rem; text-align: center; position: relative; z-index: 1; }
+.step-dot {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--page); border: 1px solid var(--border-2);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1rem;
+  font-family: var(--font-d); font-size: 16px; font-weight: 500; color: var(--text-3);
+}
+.step h3 { font-size: 13px; font-weight: 500; margin-bottom: 0.375rem; }
+.step p { font-size: 12px; color: var(--text-2); line-height: 1.6; }
+
+/* ── OUTPUTS GRID ── */
+.outputs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 3rem; }
+.out-card {
+  background: #fff; border: 1px solid var(--border-2);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+}
+.out-card.featured { border-color: var(--teal); box-shadow: 0 0 0 1px var(--teal); }
+.out-num {
+  font-family: var(--font-d); font-size: 12px; color: var(--text-3);
+  margin-bottom: 0.375rem; display: block;
+}
+.out-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 0.5rem; }
+.out-card p { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+.out-tag {
+  display: inline-block; font-size: 10px; font-weight: 500; padding: 2px 9px;
+  border-radius: 4px; margin-top: 0.75rem;
+}
+.out-tag.paid { background: var(--teal-tint); color: var(--teal-dark); border: 1px solid var(--teal-mid); }
+.out-tag.free { background: var(--surface); color: var(--text-3); border: 1px solid var(--border-2); }
+
+/* ── PRICING ── */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 3rem; }
+.pc {
+  background: #fff; border: 1px solid var(--border-2);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  display: flex; flex-direction: column;
+}
+.pc.feat { border-color: var(--teal); box-shadow: 0 0 0 1px var(--teal); }
+.pc-tier { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-3); margin-bottom: 0.875rem; }
+.pc-price { font-family: var(--font-d); font-size: 38px; font-weight: 400; color: var(--text); line-height: 1; margin-bottom: 0.25rem; }
+.pc-price small { font-family: var(--font-b); font-size: 14px; font-weight: 400; color: var(--text-3); }
+.pc-desc { font-size: 13px; color: var(--text-3); margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+.pc-feats { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+.pc-feats li { font-size: 13px; color: var(--text-2); display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
+.pc-feats li svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 1px; }
+.pc-feats li.y svg { stroke: var(--teal); fill: none; }
+.pc-feats li.n { color: var(--text-3); }
+.pc-feats li.n svg { stroke: var(--text-3); fill: none; }
+.pc-cta {
+  margin-top: 1.5rem; width: 100%;
+  font-family: var(--font-b); font-size: 13px; font-weight: 500;
+  padding: 10px; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--border-2); background: transparent; color: var(--text);
+  transition: background 0.15s;
+}
+.pc-cta:hover { background: var(--surface); }
+.pc.feat .pc-cta { background: var(--teal); color: #fff; border-color: var(--teal); }
+.pc.feat .pc-cta:hover { background: var(--teal-dark); }
+
+/* ── COURSE STRIP ── */
+.course-strip {
+  background: var(--ink); border-radius: var(--radius-lg);
+  border: 1px solid rgba(29,158,117,0.2);
+  padding: 2.75rem 2.5rem; margin-top: 4rem;
+  display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap;
+}
+.cs-text { flex: 1; min-width: 280px; }
+.cs-text h2 { font-family: var(--font-d); font-size: 28px; font-weight: 400; color: #fff; line-height: 1.3; margin-bottom: 0.5rem; }
+.cs-text p { font-size: 14px; color: var(--ink-text); line-height: 1.65; }
+.cs-cta {
+  font-family: var(--font-b); font-size: 13px; font-weight: 500;
+  padding: 11px 24px; border-radius: 8px;
+  background: var(--teal); color: #fff; border: none; cursor: pointer;
+  white-space: nowrap; transition: background 0.15s;
+}
+.cs-cta:hover { background: var(--teal-dark); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border); padding: 2rem;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.f-logo { font-size: 15px; font-weight: 500; color: var(--text); }
+.f-logo em { color: var(--teal); font-style: normal; }
+.f-note { font-size: 12px; color: var(--text-3); }
+.f-links { display: flex; gap: 1.25rem; }
+.f-links a { font-size: 12px; color: var(--text-3); text-decoration: none; }
+.f-links a:hover { color: var(--text); }
+
+/* ── PROOF CHIPS ── */
+.proof-chip {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 1rem 0.75rem; border-radius: var(--radius);
+  background: #fff; border: 1px solid var(--border-2);
+  text-align: center; font-size: 12px; color: var(--text-2); font-weight: 500;
+}
+.proof-icon { font-size: 20px; }
+
+/* ── TIMELINE ── */
+.timeline { display: flex; flex-direction: column; margin-top: 3rem; }
+.tl-item { display: flex; gap: 1.5rem; align-items: flex-start; padding-bottom: 2rem; position: relative; }
+.tl-item:not(:last-child)::before { content:''; position:absolute; left:19px; top:40px; width:1px; bottom:0; background:var(--border-2); }
+.tl-dot { width:40px; height:40px; border-radius:50%; flex-shrink:0; background:var(--page); border:1px solid var(--border-2); display:flex; align-items:center; justify-content:center; }
+.tl-dot svg { width:16px; height:16px; stroke:var(--teal); }
+.tl-content { padding-top: 8px; }
+.tl-step { font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:0.4px; color:var(--text-3); margin-bottom:3px; }
+.tl-title { font-size:16px; font-weight:500; color:var(--text); margin-bottom:5px; }
+.tl-body { font-size:14px; color:var(--text-2); line-height:1.65; max-width:560px; }
+
+/* ── FAQ ── */
+.faq-list { margin-top:2rem; display:flex; flex-direction:column; border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; }
+.faq-item { border-bottom:1px solid var(--border); background:#fff; }
+.faq-item:last-child { border-bottom:none; }
+.faq-q { list-style:none; padding:1.125rem 1.5rem; cursor:pointer; font-size:14px; font-weight:500; color:var(--text); display:flex; justify-content:space-between; align-items:center; user-select:none; }
+.faq-q::-webkit-details-marker { display:none; }
+.faq-q::after { content:'+'; font-size:18px; font-weight:300; color:var(--text-3); flex-shrink:0; margin-left:1rem; }
+.faq-item[open] .faq-q::after { content:'−'; }
+.faq-item[open] { background:var(--page); }
+.faq-a { padding:0 1.5rem 1.125rem; font-size:14px; color:var(--text-2); line-height:1.7; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 780px) {
+  .hero { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 3rem; }
+  .hero h1 { font-size: 36px; }
+  .stat-grid { grid-template-columns: 1fr; }
+  .pain-grid { grid-template-columns: 1fr; }
+  .solution-row { grid-template-columns: 1fr; gap: 2rem; }
+  .solution-row.flip { direction: ltr; }
+  .outputs-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .course-strip { flex-direction: column; }
+  .demo-fields { grid-template-columns: 1fr; }
+  .nav-r .nav-link { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow span { animation: none; }
+  .ldots span { animation: none; opacity: 1; transform: none; }
+  .score-fill { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -393,298 +600,649 @@
 <!-- NAV -->
 <nav aria-label="Main navigation">
   <a href="#" class="logo">futu<em>match</em></a>
-  <div class="nav-right">
+  <div class="nav-r">
     <a href="#how-it-works" class="nav-link">How it works</a>
-    <a href="#features" class="nav-link">Features</a>
+    <a href="#proof" class="nav-link">What is proof?</a>
+    <a href="#outputs" class="nav-link">What you get</a>
     <a href="#pricing" class="nav-link">Pricing</a>
-    <button class="nav-cta" onclick="document.getElementById('job-title').focus()">Try free</button>
+    <button class="nav-cta" onclick="document.getElementById('hc-role').focus(); document.querySelector('.hero-card').scrollIntoView({behavior:'smooth',block:'center'})">Find my hiring gap</button>
   </div>
 </nav>
 
-<!-- HERO -->
 <main>
-<section aria-labelledby="hero-heading">
+
+<!-- ── HERO ── -->
+<section aria-labelledby="hero-h">
   <div class="hero">
 
-    <!-- LEFT: copy -->
+    <!-- LEFT -->
     <div class="hero-left">
-      <div class="eyebrow">
-        <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1l1.5 3 3.5.5-2.5 2.5.5 3.5L6 9l-3 1.5.5-3.5L1 4.5 4.5 4z" stroke-width="1.5"/></svg>
-        Career identity intelligence
+      <div class="hero-eyebrow">
+        <span aria-hidden="true"></span>
+        The world's first Career Proof Intelligence Platform
       </div>
-      <h1 class="hero-title" id="hero-heading">
-        Don't chase roles.<br>
-        <strong>Author them.</strong>
+
+      <h1 id="hero-h">
+        Recruiters don't hire skills.<br>
+        <em>They hire evidence.</em>
       </h1>
-      <p class="hero-body">
-        Most tools score your resume against one job. FutuMatch maps who you're becoming — and shows you exactly what you need to get there.
-      </p>
-      <div class="hero-actions">
-        <a href="#pricing" class="cta-primary">Get started — 10 free credits</a>
-        <span class="cta-note">No account needed · Instant results</span>
+
+      <div class="pain-bullets">
+        <div class="pb">250+ people applied for that role. You weren't shortlisted.</div>
+        <div class="pb">Not because you were unqualified. Because you had no <strong>visible proof</strong>.</div>
+        <div class="pb">The candidate who got it had a benchmark, a report, a public artifact. You had a resume.</div>
+        <div class="pb">FutuMatch shows you exactly what evidence you're missing — and how to build it while you earn.</div>
+      </div>
+
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">
+          Find my hiring gap — free
+        </button>
+        <a href="#proof" class="btn-outline">What is proof?</a>
+      </div>
+      <p class="hero-note">10 free credits · No account needed · 30 seconds</p>
+    </div>
+
+    <!-- RIGHT: sample output preview — show outcome before asking for input -->
+    <div class="hero-card" role="region" aria-label="Sample analysis output">
+      <div class="hc-label">Sample analysis — AI Safety Researcher</div>
+
+      <div class="hc-score-row" style="margin-bottom:1rem;">
+        <div class="hc-score-num" style="-webkit-text-fill-color:var(--text)">42</div>
+        <div class="hc-score-meta">
+          <div class="hc-score-label">Early stage</div>
+          <div class="hc-score-sub">current proof alignment</div>
+          <div class="hc-bar"><div class="hc-fill" style="width:42%; transition:none;"></div></div>
+        </div>
+      </div>
+
+      <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.4px;color:var(--text-3);margin-bottom:0.5rem;">Evidence you have</div>
+      <div class="hc-tags" style="margin-bottom:0.875rem;">
+        <span class="hc-tag has">✓ Technical background</span>
+        <span class="hc-tag has">✓ Systems thinking</span>
+      </div>
+
+      <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.4px;color:var(--text-3);margin-bottom:0.5rem;">Missing proof</div>
+      <div class="hc-tags" style="margin-bottom:0.875rem;">
+        <span class="hc-tag miss">✗ Published evaluation artifact</span>
+        <span class="hc-tag miss">✗ Benchmark contribution</span>
+        <span class="hc-tag miss">✗ Public alignment write-up</span>
+      </div>
+
+      <div class="hc-insight" style="margin-bottom:1rem;">Your technical foundation is real signal. But the shortlisted candidate had a public benchmark report with their name on it. That's the gap — not your ability, your <strong>visibility</strong>.</div>
+
+      <div style="border-top:1px solid var(--border);padding-top:0.875rem;">
+        <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.4px;color:var(--text-3);margin-bottom:0.5rem;">Recommended next build</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;">
+            <span style="color:var(--text-2);">Publish benchmark report</span>
+            <span style="color:var(--teal);font-weight:500;">+18% match</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;">
+            <span style="color:var(--text-2);">Write evaluation case study</span>
+            <span style="color:var(--teal);font-weight:500;">+14% match</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;">
+            <span style="color:var(--text-2);">GitHub: 3 safety contributions</span>
+            <span style="color:var(--teal);font-weight:500;">+9% match</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="hc-cta-full" style="margin-top:1rem;" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">
+        Analyse your own CV — free →
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stat-section" role="region" aria-label="Labor market statistics">
+  <div class="stat-inner">
+    <div class="stat-header">The market data nobody put in your career advice</div>
+    <p style="font-size:13px; color:rgba(255,255,255,0.25); margin-top:4px; margin-bottom:1.75rem;">Source: PwC AI Jobs Barometer 2026 + OpenAI AI Jobs Transition Framework (Apr 2026)</p>
+    <div class="stat-grid">
+
+      <div class="stat-card">
+        <div class="stat-num-wrap">
+          <span class="stat-num">2×</span>
+          <span class="stat-source">PwC AI Jobs Barometer 2026</span>
+        </div>
+        <div class="stat-copy">
+          <div class="stat-headline">Expert roles are growing twice as fast as roles anyone can do.</div>
+          <div class="stat-detail">The "democratised" track is getting crowded. The professionalised track is getting scarce — and it rewards proof over presence.</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-num-wrap">
+          <span class="stat-num">75%</span>
+          <span class="stat-source">PwC AI Jobs Barometer 2026</span>
+        </div>
+        <div class="stat-copy">
+          <div class="stat-headline">The skills gap for AI-exposed roles grew 75% in a single year.</div>
+          <div class="stat-detail">The bar isn't just high. It's rising. Every quarter you spend updating your LinkedIn, the shortlist is moving further away.</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-num-wrap">
+          <span class="stat-num">35%</span>
+          <span class="stat-source">PwC AI Jobs Barometer 2026</span>
+        </div>
+        <div class="stat-copy">
+          <div class="stat-headline">More "entry-level" roles now require what used to be senior judgment.</div>
+          <div class="stat-detail">The job ladder didn't disappear. It just moved up a floor while you weren't looking — and nobody updated the job description.</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-num-wrap">
+          <span class="stat-num">24%</span>
+          <span class="stat-source">OpenAI Jobs Transition Framework</span>
+        </div>
+        <div class="stat-copy">
+          <div class="stat-headline">Nearly a quarter of all jobs will reorganise — not disappear.</div>
+          <div class="stat-detail">The people who step into those reorganised roles will be the ones who built a portfolio identity around where work was going. Not the ones who waited to see what happened.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── TRUST STRIP ── -->
+<div style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.25rem 2rem;">
+  <div style="max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;justify-content:center;">
+    <div style="font-size:12px;color:var(--text-3);font-weight:500;text-transform:uppercase;letter-spacing:0.4px;">Built on</div>
+    <div style="font-size:13px;color:var(--text-2);display:flex;align-items:center;gap:6px;"><span style="color:var(--teal);">✓</span> PwC AI Jobs Barometer 2026</div>
+    <div style="font-size:13px;color:var(--text-2);display:flex;align-items:center;gap:6px;"><span style="color:var(--teal);">✓</span> OpenAI Jobs Transition Framework</div>
+    <div style="font-size:13px;color:var(--text-2);display:flex;align-items:center;gap:6px;"><span style="color:var(--teal);">✓</span> Real hiring signals — not keyword matching</div>
+    <div style="font-size:13px;color:var(--text-2);display:flex;align-items:center;gap:6px;"><span style="color:var(--teal);">✓</span> Portfolio intelligence — not ATS optimisation</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ── PAIN SECTION ── -->
+<section aria-labelledby="pain-h">
+  <div class="wrap">
+    <span class="eyebrow">Why applications fail</span>
+    <h2 class="section-h" id="pain-h">Applications rarely fail because<br>you lack intelligence.</h2>
+    <p class="section-sub">They fail because employers cannot see your proof. Here are the three gaps nobody told you about.</p>
+
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-num">01</div>
+        <div class="pain-stat">The Evidence Gap</div>
+        <h3>Recruiters can't verify your ability. So they don't try.</h3>
+        <p>The researcher role you want? They already assume you can learn. What got the other candidate shortlisted was a published benchmark report. A rubric they built. A model evaluation made public. Visible evidence a stranger could verify in 30 seconds. A resume has none of that.</p>
+        <p class="pain-source">PwC AI Jobs Barometer 2026 — 35% growth in roles requiring senior proof artifacts since 2019</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">02</div>
+        <div class="pain-stat">The Income Gap</div>
+        <h3>"Build a portfolio" is advice for people who can afford to wait.</h3>
+        <p>Every career platform assumes you have savings and runway. Their advice: take a bootcamp, be patient. But your bills don't know you're transitioning. FutuMatch shows what you can sell this week — with skills you already have — while you build the artifacts that get you hired.</p>
+        <p class="pain-source">OpenAI AI Jobs Transition Framework — workers need income strategies during transition, not just pathways</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">03</div>
+        <div class="pain-stat">The Identity Gap</div>
+        <h3>You're optimising for a destination that keeps moving.</h3>
+        <p>24% of jobs will reorganise, not disappear. The people who step into those roles won't be the ones who added keywords. They'll be the ones who built a portfolio identity around where the work was going. Generic tools don't tell you what that identity looks like. FutuMatch does.</p>
+        <p class="pain-source">OpenAI AI Jobs Transition Framework 2026 — craft portfolio pathways, not static job predictions</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHAT IS PROOF ── -->
+<section id="proof" aria-labelledby="proof-h">
+  <div class="wrap">
+    <span class="eyebrow">What is proof?</span>
+    <h2 class="section-h" id="proof-h">Not what you know.<br>What you've made visible.</h2>
+    <p class="section-sub">Courses teach knowledge. Recruiters hire evidence. Proof is anything a stranger can find, read, and verify — without asking you a question.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:2.5rem;">
+      <div class="proof-chip"><span class="proof-icon">📄</span><span>Research report</span></div>
+      <div class="proof-chip"><span class="proof-icon">📊</span><span>Benchmark</span></div>
+      <div class="proof-chip"><span class="proof-icon">🐙</span><span>GitHub repo</span></div>
+      <div class="proof-chip"><span class="proof-icon">✍️</span><span>Technical article</span></div>
+      <div class="proof-chip"><span class="proof-icon">📋</span><span>Evaluation rubric</span></div>
+      <div class="proof-chip"><span class="proof-icon">💼</span><span>Case study</span></div>
+      <div class="proof-chip"><span class="proof-icon">📦</span><span>Open source tool</span></div>
+      <div class="proof-chip"><span class="proof-icon">🗣️</span><span>Conference talk</span></div>
+      <div class="proof-chip"><span class="proof-icon">📁</span><span>Public dataset</span></div>
+      <div class="proof-chip"><span class="proof-icon">🔬</span><span>Portfolio project</span></div>
+    </div>
+
+    <div style="margin-top:3rem;display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;">
+      <div style="padding:1.5rem 2rem;background:var(--surface);">
+        <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.4px;color:var(--text-3);margin-bottom:1rem;">Traditional resume tools</div>
+        <div style="display:flex;flex-direction:column;gap:0.625rem;">
+          <div style="font-size:14px;color:var(--text-2);display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--red);flex-shrink:0;">✗</span> Keywords and ATS scores</div>
+          <div style="font-size:14px;color:var(--text-2);display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--red);flex-shrink:0;">✗</span> Resume rewriting</div>
+          <div style="font-size:14px;color:var(--text-2);display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--red);flex-shrink:0;">✗</span> Past experience framing</div>
+          <div style="font-size:14px;color:var(--text-2);display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--red);flex-shrink:0;">✗</span> Generic skill gaps</div>
+          <div style="font-size:14px;color:var(--text-2);display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--red);flex-shrink:0;">✗</span> No income during transition</div>
+        </div>
+      </div>
+      <div style="padding:1.5rem 2rem;background:#fff;border-left:1px solid var(--border);">
+        <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.4px;color:var(--teal);margin-bottom:1rem;">FutuMatch</div>
+        <div style="display:flex;flex-direction:column;gap:0.625rem;">
+          <div style="font-size:14px;color:var(--text);display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--teal);flex-shrink:0;">✓</span> <strong>Evidence and portfolio proof</strong></div>
+          <div style="font-size:14px;color:var(--text);display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--teal);flex-shrink:0;">✓</span> <strong>Future identity building</strong></div>
+          <div style="font-size:14px;color:var(--text);display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--teal);flex-shrink:0;">✓</span> <strong>Hiring signals — not past titles</strong></div>
+          <div style="font-size:14px;color:var(--text);display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--teal);flex-shrink:0;">✓</span> <strong>Artifact-specific gap analysis</strong></div>
+          <div style="font-size:14px;color:var(--text);display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--teal);flex-shrink:0;">✓</span> <strong>Immediate offer strategy</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── SOLUTION ROWS ── -->
+<section aria-labelledby="sol-h">
+  <div class="wrap">
+    <span class="eyebrow">Four outputs. One session.</span>
+    <h2 class="section-h" id="sol-h">Turn any dream job into<br>a roadmap of proof.</h2>
+    <p class="section-sub">Paste your CV. Paste any job description. We diagnose the gap between who you are today and the portfolio identity the market demands — then show you exactly how to close it.</p>
+
+    <!-- ROW 1: Gap Map -->
+    <div class="solution-row">
+      <div>
+        <div class="sol-label">Output 01 — Gap Map</div>
+        <h3 class="sol-h">The honest answer<br>nobody gave you.</h3>
+        <p class="sol-body">Most feedback is "your resume needs work." FutuMatch tells you exactly which proof artifacts are missing for your specific role — ranked by how much weight they carry with the people making the decision. Not vibes. Not keywords. The actual things that got the other candidate through.</p>
+        <div class="sol-callout">
+          <strong>Real example:</strong> Targeting AI evaluation research? Your gap isn't Python. It's that you have no public benchmark, no rubric sample, and no model comparison write-up. Those three things are what the shortlisted candidate had. Now you know.
+        </div>
+      </div>
+      <div>
+        <div class="output-card">
+          <div class="oc-header">
+            <div class="oc-icon">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+            </div>
+            <div class="oc-title">Gap Map — AI Policy Researcher</div>
+            <div class="oc-badge">61 / 100</div>
+          </div>
+          <div class="gap-bar">
+            <div class="gap-row"><span class="gap-key">Systems thinking</span><div class="gap-track"><div class="gap-fill-g" style="width:85%"></div></div><span class="gap-pct">85%</span></div>
+            <div class="gap-row"><span class="gap-key">Technical background</span><div class="gap-track"><div class="gap-fill-g" style="width:70%"></div></div><span class="gap-pct">70%</span></div>
+            <div class="gap-row"><span class="gap-key">Public research artifact</span><div class="gap-track"><div class="gap-fill-r" style="width:10%"></div></div><span class="gap-pct">10%</span></div>
+            <div class="gap-row"><span class="gap-key">Policy writing sample</span><div class="gap-track"><div class="gap-fill-r" style="width:15%"></div></div><span class="gap-pct">15%</span></div>
+            <div class="gap-row"><span class="gap-key">Alignment theory fluency</span><div class="gap-track"><div class="gap-fill-r" style="width:25%"></div></div><span class="gap-pct">25%</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- RIGHT: live demo -->
-    <div class="demo-card" role="region" aria-labelledby="demo-label">
-      <div class="demo-label" id="demo-label">
-        Live 30-second demo
+    <!-- ROW 2: Idealized Profile -->
+    <div class="solution-row flip">
+      <div>
+        <div class="sol-label">Output 02 — Idealized Profile™</div>
+        <h3 class="sol-h">Meet the version of you<br>that gets hired.</h3>
+        <p class="sol-body">Job descriptions tell you what one company wants right now. The Idealized Profile™ builds you the resume of the expert you're becoming — reverse-engineered from your target domain, not a single posting. It's the north star your applications aim at, not a template you fill in.</p>
+        <div class="sol-callout">
+          <strong>The difference:</strong> A job description is a snapshot. Your Idealized Profile is a five-year identity target. One gets you this role. The other builds the career.
+        </div>
       </div>
-
-      <div class="demo-field">
-        <label for="job-title">Target role title</label>
-        <input
-          type="text"
-          id="job-title"
-          placeholder="e.g. AI Safety Researcher"
-          maxlength="80"
-          autocomplete="off"
-        />
+      <div>
+        <div class="output-card">
+          <div class="oc-header">
+            <div class="oc-icon">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2C8 2 4 5 4 9a4 4 0 008 0c0-4-4-7-4-7z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="oc-title">Idealized Profile™</div>
+            <div class="oc-badge" style="background:var(--amber-tint);color:var(--amber);border-color:var(--amber-mid);">paid</div>
+          </div>
+          <div class="oc-body">Target: <strong>AI Safety Researcher</strong> · 18-month build horizon</div>
+          <ul class="oc-list">
+            <li>1 published evaluation report or benchmark contribution</li>
+            <li>ARENA / BlueDot / MATS programme completion</li>
+            <li>2 public write-ups on alignment concepts</li>
+            <li>GitHub: 3+ safety-adjacent code contributions</li>
+            <li>Visible community participation (LESSWRONG, AF, AISF)</li>
+          </ul>
+        </div>
       </div>
+    </div>
 
-      <div class="demo-field">
-        <label for="user-bio">Your current background (1–2 sentences)</label>
-        <textarea
-          id="user-bio"
-          placeholder="e.g. I have a background in software engineering and have been learning ML fundamentals for the past year."
-          maxlength="400"
-        ></textarea>
+    <!-- ROW 3: Immediate Income -->
+    <div class="solution-row">
+      <div>
+        <div class="sol-label">Output 03 — Immediate Offer Strategy</div>
+        <h3 class="sol-h">You don't have to choose<br>between rent and reinvention.</h3>
+        <p class="sol-body">Based on the skills you already have right now, FutuMatch identifies what you can sell this week to the same kinds of organisations you want to work for. You earn while building credibility. The clients you serve become the community you grow into.</p>
+        <div class="sol-callout">
+          <strong>How it works:</strong> You have spreadsheet fluency and decent writing? That's a dataset documentation service for AI evaluation labs, launch-ready in 3 days. We give you the guide, the pricing, and the outreach message.
+        </div>
       </div>
-
-      <button class="demo-btn" id="demo-btn" onclick="runDemo()">
-        <svg viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6"/><path d="M5.5 4.5l4 2.5-4 2.5z" fill="currentColor" stroke="none"/></svg>
-        Analyse my fit
-      </button>
-
-      <div class="demo-error" id="demo-error" role="alert" aria-live="polite"></div>
-
-      <div class="demo-result" id="demo-result" aria-live="polite">
-        <div class="result-divider"></div>
-        <div class="score-row">
-          <div class="score-num" id="score-num">—</div>
-          <div class="score-meta">
-            <div class="score-label" id="score-label"></div>
-            <div class="score-sub" id="score-sub"></div>
-            <div class="score-bar" aria-hidden="true">
-              <div class="score-fill" id="score-fill"></div>
+      <div>
+        <div class="output-card">
+          <div class="oc-header">
+            <div class="oc-icon">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M4 10l4 4 4-4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="oc-title">Immediate Offer Strategy</div>
+          </div>
+          <div class="oc-body" style="margin-bottom:.875rem;">Based on your current CV — offers you can launch this week:</div>
+          <div class="income-grid">
+            <div class="income-item">
+              <h4>Dataset documentation</h4>
+              <p>For AI evaluation labs needing clean, annotated datasets</p>
+              <span class="tag">Launch in 3 days</span>
+            </div>
+            <div class="income-item">
+              <h4>Report editing</h4>
+              <p>Capability assessment drafting for research teams</p>
+              <span class="tag">Launch in 1 day</span>
+            </div>
+            <div class="income-item">
+              <h4>Rubric design consult</h4>
+              <p>Benchmark rubric design for training programs</p>
+              <span class="tag">Launch in 5 days</span>
+            </div>
+            <div class="income-item">
+              <h4>Peer cohort tutoring</h4>
+              <p>Run a micro-cohort review circle in your domain</p>
+              <span class="tag">Launch in 7 days</span>
             </div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="gaps-title">Signal keywords</div>
-        <div class="gap-tags" id="gap-tags"></div>
-
-        <div class="insight-box" id="insight-box"></div>
-        <div class="demo-timer" id="demo-timer"></div>
+    <!-- ROW 4: Artifact Roadmap -->
+    <div class="solution-row flip">
+      <div>
+        <div class="sol-label">Output 04 — Artifact Roadmap</div>
+        <h3 class="sol-h">Stop collecting certificates.<br>Start building evidence.</h3>
+        <p class="sol-body">A certificate says you sat through something. An artifact proves you can do something. Your 90-day Roadmap maps exactly which deliverables to build — benchmarks, rubrics, reports, case studies — and ties every certification to a portfolio piece you ship at the end of it.</p>
+        <div class="sol-callout">
+          <strong>The rule:</strong> Every course in your roadmap ends with a public artifact, not a PDF badge. By week 13, you have a portfolio a hiring committee can actually read.
+        </div>
+      </div>
+      <div>
+        <div class="output-card">
+          <div class="oc-header">
+            <div class="oc-icon">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4h10M3 8h7M3 12h5" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="oc-title">90-Day Artifact Roadmap</div>
+            <div class="oc-badge" style="background:var(--amber-tint);color:var(--amber);border-color:var(--amber-mid);">paid</div>
+          </div>
+          <ul class="oc-list">
+            <li><strong>Week 1–3:</strong> Complete ARENA Module 1 → Publish interpretability note</li>
+            <li><strong>Week 4–6:</strong> Build benchmark rubric for one open model → GitHub repo</li>
+            <li><strong>Week 7–10:</strong> Draft capability assessment report → Public PDF</li>
+            <li><strong>Week 11–13:</strong> BlueDot Impact AI Safety cohort + peer review round</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- DIVIDER -->
-<div class="divider" aria-hidden="true"></div>
+<div class="divider"></div>
 
-<!-- HOW IT WORKS -->
-<section id="how-it-works" aria-labelledby="how-title">
-  <div class="section-wrap">
-    <div class="section-eyebrow">How it works</div>
-    <h2 class="section-title" id="how-title">From who you are<br>to who you want to be.</h2>
-    <p class="section-body">Three inputs. A complete picture of the gap between your current identity and your target role — with a learning path to close it.</p>
+<!-- ── LIVE DEMO ── -->
+<section class="demo-wrap" aria-labelledby="demo-h" id="demo">
+  <div class="demo-inner">
+    <span class="eyebrow">Free · No account · 30 seconds</span>
+    <h2 class="demo-h" id="demo-h">Paste your CV and a job description.<br>We'll tell you what's missing.</h2>
+    <p class="demo-sub">Works with any aspiration — Epoch AI, policy orgs, evaluation labs, research institutes. Paste a full listing, a URL, or just a role title. We figure out what that role actually requires.</p>
 
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h3>Upload your resume</h3>
-        <p>Drop in your existing resume as text or PDF. We extract your skills, experience signal, and credentialling language.</p>
+    <div class="demo-card">
+      <div class="demo-fields">
+        <div class="demo-field">
+          <label for="role-input">Job description or role</label>
+          <input type="text" id="role-input" placeholder="e.g. AI Safety Researcher at Epoch AI, or paste a URL" maxlength="80" autocomplete="off">
+        </div>
+        <div class="demo-field">
+          <label for="bg-input">Your CV (paste a summary)</label>
+          <input type="text" id="bg-input" placeholder="e.g. Software engineer, 3 yrs. MSc CS. Learning ML. No published work yet." maxlength="200" autocomplete="off">
+        </div>
+        <div class="demo-field full">
+          <label for="goal-input">What does the role you want actually look like? (optional)</label>
+          <textarea id="goal-input" placeholder="e.g. I want to do evaluation research at a frontier lab or policy org within 12 months." maxlength="300"></textarea>
+        </div>
       </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h3>Define your target identity</h3>
-        <p>Describe who you want to become — a role, a domain, a type of work. Not just a job title, but the kind of expert you're building toward.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h3>Get your gap map</h3>
-        <p>See your alignment score, the exact keywords and credentials you're missing, and an Idealized Resume that shows what you need to build.</p>
+      <button class="demo-btn" id="demo-btn" onclick="runDemo()">Show me what I'm missing</button>
+      <div class="demo-error" id="demo-error" role="alert"></div>
+
+      <div class="demo-result" id="demo-result">
+        <div class="result-row">
+          <div class="result-score-block">
+            <div class="result-score-num" id="res-score">—</div>
+            <div class="score-bar"><div class="score-fill" id="res-fill"></div></div>
+            <div class="result-score-word" id="res-word"></div>
+          </div>
+          <div class="result-labels">
+            <div class="result-label-main" id="res-label"></div>
+            <div class="result-insight" id="res-insight"></div>
+          </div>
+        </div>
+        <div class="result-tags-wrap">
+          <div class="result-tags-label">What you have vs. what they're screening for</div>
+          <div class="result-tags" id="res-tags"></div>
+        </div>
+        <div class="result-next">
+          <div class="result-next-label">The one thing to do in the next 14 days</div>
+          <div class="result-next-text" id="res-next"></div>
+        </div>
+        <div class="demo-note" id="res-note"></div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider" aria-hidden="true"></div>
+<div class="divider"></div>
 
-<!-- FEATURES -->
-<section id="features" aria-labelledby="feat-title">
-  <div class="section-wrap">
-    <div class="section-eyebrow">What you get</div>
-    <h2 class="section-title" id="feat-title">Every output you need.<br>None you don't.</h2>
-    <p class="section-body">Generated from your actual resume and target identity — not templates.</p>
+<!-- ── HOW IT WORKS ── -->
+<section id="how-it-works" aria-labelledby="how-h">
+  <div class="wrap">
+    <span class="eyebrow">How it works</span>
+    <h2 class="section-h" id="how-h">From CV to career proof.<br>One session.</h2>
+    <p class="section-sub">Two inputs. Seven minutes. A complete picture of your evidence gap — and what to do about it.</p>
 
-    <div class="features-grid">
-      <div class="feat">
-        <div class="feat-icon">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 4h10M3 8h7M3 12h5" stroke-linecap="round"/></svg>
         </div>
-        <h3>Alignment score</h3>
-        <p>A composite score showing how well your background maps to your target role — keyword match, experience signal, and credential fit.</p>
+        <div class="tl-content">
+          <div class="tl-step">Step 1</div>
+          <div class="tl-title">Upload your CV</div>
+          <div class="tl-body">Text, PDF, or a rough summary. We extract your portfolio evidence — what you've built, published, and made visible — not just your job titles.</div>
+        </div>
       </div>
-      <div class="feat">
-        <div class="feat-icon">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4h10M3 8h7M3 12h5" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="tl-item">
+        <div class="tl-dot">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 2l2 4 4.5.5-3.25 3 .75 4.5L8 12l-4 2 .75-4.5L1.5 6.5 6 6z" stroke-linejoin="round"/></svg>
         </div>
-        <h3>Full resume rewrite</h3>
-        <p>Your resume rewritten for the role — stronger bullets, missing keywords woven in where they genuinely fit. Download as .docx.</p>
+        <div class="tl-content">
+          <div class="tl-step">Step 2</div>
+          <div class="tl-title">Paste the job description</div>
+          <div class="tl-body">A full listing, URL, or role title. Works for any aspiration — research, policy, evaluation, strategy, any domain. We figure out what hiring signals that role actually demands.</div>
+        </div>
       </div>
-      <div class="feat">
-        <div class="feat-icon">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="tl-item">
+        <div class="tl-dot">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M5 8l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <h3>
-          Idealized Resume™
-          <span class="badge-paid">paid</span>
-        </h3>
-        <p>The resume of your future self. Built from your target identity, not a job description. Shows exactly what you need to acquire.</p>
+        <div class="tl-content">
+          <div class="tl-step">Step 3</div>
+          <div class="tl-title">AI extracts hiring signals</div>
+          <div class="tl-body">We compare your portfolio evidence against the proof the role demands — not keywords, but the specific artifacts, credentials, and public work that gatekeepers trust.</div>
+        </div>
       </div>
-      <div class="feat">
-        <div class="feat-icon">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12l4-8 4 8M5.5 9.5h5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="tl-item">
+        <div class="tl-dot">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 2v12M4 6l4-4 4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <h3>
-          Skill-authoring pathway
-          <span class="badge-paid">paid</span>
-        </h3>
-        <p>Blue ocean role clusters with low competition and high strategic fit. Mapped to your unique combination of skills.</p>
+        <div class="tl-content">
+          <div class="tl-step">Step 4</div>
+          <div class="tl-title">Get your four outputs</div>
+          <div class="tl-body">Gap Map, Idealized Profile™, 90-Day Artifact Roadmap, and Immediate Offer Strategy. Your complete evidence-building plan — specific to your aspiration, not a template.</div>
+        </div>
       </div>
-      <div class="feat">
-        <div class="feat-icon">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 10l3-3 3 3 5-5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--teal);border-color:var(--teal);">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.5" aria-hidden="true"><path d="M2 10l3-3 3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <h3>Cover letter + STAR stories</h3>
-        <p>Generated from your actual experience. Two tones — professional and conversational. Neither opens with "I am writing to apply."</p>
+        <div class="tl-content">
+          <div class="tl-step" style="color:var(--teal);">Result</div>
+          <div class="tl-title">Build portfolio. Increase opportunities.</div>
+          <div class="tl-body">Follow your Artifact Roadmap. Earn while you build via your Offer Strategy. As your evidence grows, so does your recruiter confidence score.</div>
+        </div>
       </div>
-      <div class="feat">
-        <div class="feat-icon">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke-width="1.5"/><path d="M5 7h6M5 10h4" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </div>
-        <h3>
-          Course integration
-          <span class="badge-paid">paid</span>
-        </h3>
-        <p>Connect to career transition programmes. Track learner progress. Use the Idealized Resume as a programme capstone artifact.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── OUTPUTS ── -->
+<section id="outputs" aria-labelledby="out-h">
+  <div class="wrap">
+    <span class="eyebrow">What comes out</span>
+    <h2 class="section-h" id="out-h">Four things no one<br>ever handed you.</h2>
+    <p class="section-sub">Not templated. Not generic. Built from your specific CV and your specific target — every output is about you, not "someone in your situation."</p>
+    <div class="outputs-grid">
+      <div class="out-card featured">
+        <span class="out-num">01</span>
+        <h3>Gap Map</h3>
+        <p>The exact proof artifacts standing between you and a shortlist for your target role — ranked by how much each one actually matters to the people making the decision. Finally, a real answer to "why didn't I hear back."</p>
+        <span class="out-tag free">Included free</span>
+      </div>
+      <div class="out-card featured">
+        <span class="out-num">02</span>
+        <h3>Idealized Profile™</h3>
+        <p>The resume of the expert you're becoming — built from your target domain, not a single job posting. Use it as your north star. Apply to jobs with it. Watch your targeting get sharper every week.</p>
+        <span class="out-tag paid">Credits</span>
+      </div>
+      <div class="out-card featured">
+        <span class="out-num">03</span>
+        <h3>Artifact Roadmap</h3>
+        <p>90 days. Specific deliverables. Every course ends with something you can show — not a badge, not a certificate, but a benchmark you ran, a report you published, a rubric you designed. Evidence, not credentials.</p>
+        <span class="out-tag paid">Credits</span>
+      </div>
+      <div class="out-card featured">
+        <span class="out-num">04</span>
+        <h3>Immediate Offer Strategy</h3>
+        <p>What you can sell this week, to who, for how much, and what to say when you reach out. Based on skills you already have. Pays the bills while you build the portfolio. You don't have to choose.</p>
+        <span class="out-tag paid">Credits</span>
       </div>
     </div>
 
-    <!-- COURSE STRIP -->
+    <!-- COHORT STRIP -->
     <div class="course-strip">
-      <div class="course-strip-text">
-        <h2>Built for career transition programmes.</h2>
-        <p>If you run an AI Safety, policy, or research training cohort — FutuMatch's Idealized Resume is designed to be your capstone. Students map their current profile to their target researcher identity and graduate with a clear gap-closure plan.</p>
+      <div class="cs-text">
+        <h2>Your graduates need more than a certificate. Give them a portfolio.</h2>
+        <p>If you run a bootcamp, an AI Safety cohort, or a career transition programme — FutuMatch turns your curriculum into artifact-producing evidence. Every student leaves with a Gap Map, an Idealized Profile, and a 90-day build plan specific to their aspiration. That's what gets them hired, not your certificate alone.</p>
       </div>
-      <button class="course-strip-cta">Enquire about cohort access</button>
+      <button class="cs-cta">Talk about cohort access</button>
     </div>
   </div>
 </section>
 
-<div class="divider" aria-hidden="true"></div>
+<div class="divider"></div>
 
-<!-- PRICING -->
-<section id="pricing" aria-labelledby="pricing-title">
-  <div class="section-wrap">
-    <div class="section-eyebrow">Pricing</div>
-    <h2 class="section-title" id="pricing-title">Pay for what you use.<br>Never more.</h2>
-    <p class="section-body">Credits never expire. One credit = one full analysis. No subscriptions unless you need them.</p>
-
+<!-- ── PRICING ── -->
+<section id="pricing" aria-labelledby="pricing-h">
+  <div class="wrap">
+    <span class="eyebrow">Pricing</span>
+    <h2 class="section-h" id="pricing-h">Buy when you're ready<br>to build. Not before.</h2>
+    <p class="section-sub">Credits never expire. No subscriptions. No monthly guilt. One credit, one full analysis — use it when the moment calls for it.</p>
     <div class="pricing-grid">
 
-      <!-- FREE -->
-      <div class="price-card">
-        <div class="price-tier">Free</div>
-        <div class="price-main">10 <small>credits</small></div>
-        <div class="price-desc">To get started</div>
-        <ul class="price-feats">
-          <li class="has">
-            <svg viewBox="0 0 14 14"><path d="M2.5 7l3 3 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Alignment score + gaps
-          </li>
-          <li class="has">
-            <svg viewBox="0 0 14 14"><path d="M2.5 7l3 3 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Resume rewrite preview
-          </li>
-          <li class="no">
-            <svg viewBox="0 0 14 14"><path d="M3 3l8 8M11 3l-8 8" stroke-linecap="round"/></svg>
-            Idealized Resume
-          </li>
-          <li class="no">
-            <svg viewBox="0 0 14 14"><path d="M3 3l8 8M11 3l-8 8" stroke-linecap="round"/></svg>
-            Skill-authoring pathway
-          </li>
-          <li class="no">
-            <svg viewBox="0 0 14 14"><path d="M3 3l8 8M11 3l-8 8" stroke-linecap="round"/></svg>
-            .docx download
-          </li>
+      <div class="pc">
+        <div class="pc-tier">Free</div>
+        <div class="pc-price">10 <small>credits</small></div>
+        <div class="pc-desc">Find out what's actually in the way · No card needed</div>
+        <ul class="pc-feats">
+          <li class="y"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7l3 3 6-6"/></svg>Gap Map (alignment score + gaps)</li>
+          <li class="y"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7l3 3 6-6"/></svg>Resume rewrite preview</li>
+          <li class="n"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg>Idealized Profile™</li>
+          <li class="n"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg>Artifact Roadmap</li>
+          <li class="n"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg>Immediate Offer Strategy</li>
         </ul>
-        <button class="price-card-cta">Start free</button>
+        <button class="pc-cta">Start free</button>
       </div>
 
-      <!-- CREDITS -->
-      <div class="price-card featured">
-        <div class="price-tier">Credit packs</div>
-        <div class="price-main">RM5 <small>/ 10 credits</small></div>
-        <div class="price-desc">RM0.50 per analysis · never expires</div>
-        <ul class="price-feats">
-          <li class="has">
-            <svg viewBox="0 0 14 14"><path d="M2.5 7l3 3 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Everything in Free
-          </li>
-          <li class="has">
-            <svg viewBox="0 0 14 14"><path d="M2.5 7l3 3 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Full resume rewrite
-          </li>
-          <li class="has">
-            <svg viewBox="0 0 14 14"><path d="M2.5 7l3 3 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Cover letter + STAR stories
-          </li>
-          <li class="has">
-            <svg viewBox="0 0 14 14"><path d="M2.5 7l3 3 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            .docx download
-          </li>
-          <li class="has">
-            <svg viewBox="0 0 14 14"><path d="M2.5 7l3 3 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Idealized Resume (3 credits each)
-          </li>
+      <div class="pc feat">
+        <div class="pc-tier">Credit packs</div>
+        <div class="pc-price">RM5 <small>/ 10 credits</small></div>
+        <div class="pc-desc">RM0.50 per analysis · never expires · use when you're ready</div>
+        <ul class="pc-feats">
+          <li class="y"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7l3 3 6-6"/></svg>Everything in Free</li>
+          <li class="y"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7l3 3 6-6"/></svg>Full resume rewrite + .docx</li>
+          <li class="y"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7l3 3 6-6"/></svg>Cover letter + STAR stories</li>
+          <li class="y"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7l3 3 6-6"/></svg>Idealized Profile™ (3 credits)</li>
+          <li class="y"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7l3 3 6-6"/></svg>Artifact Roadmap (5 credits)</li>
+          <li class="y"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7l3 3 6-6"/></svg>Immediate Offer Strategy (2 credits)</li>
         </ul>
-        <button class="price-card-cta">Buy credits</button>
+        <button class="pc-cta">Buy credits</button>
       </div>
 
-      <!-- COHORT -->
-      <div class="price-card">
-        <div class="price-tier">Cohort</div>
-        <div class="price-main">RM199 <small>/ cohort</small></div>
-        <div class="price-desc">For programme leads + educators</div>
-        <ul class="price-feats">
-          <li class="has">
-            <svg viewBox="0 0 14 14"><path d="M2.5 7l3 3 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            100 credits shared pool
-          </li>
-          <li class="has">
-            <svg viewBox="0 0 14 14"><path d="M2.5 7l3 3 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Learner dashboard
-          </li>
-          <li class="has">
-            <svg viewBox="0 0 14 14"><path d="M2.5 7l3 3 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Cohort progress tracking
-          </li>
-          <li class="has">
-            <svg viewBox="0 0 14 14"><path d="M2.5 7l3 3 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Capstone capstone export
-          </li>
-          <li class="has">
-            <svg viewBox="0 0 14 14"><path d="M2.5 7l3 3 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Instructor analytics
-          </li>
+      <div class="pc">
+        <div class="pc-tier">Cohort</div>
+        <div class="pc-price">RM199 <small>/ cohort</small></div>
+        <div class="pc-desc">Turn your curriculum into a portfolio-producing machine</div>
+        <ul class="pc-feats">
+          <li class="y"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7l3 3 6-6"/></svg>100 shared credits</li>
+          <li class="y"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7l3 3 6-6"/></svg>Learner dashboard</li>
+          <li class="y"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7l3 3 6-6"/></svg>Cohort progress tracking</li>
+          <li class="y"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7l3 3 6-6"/></svg>Capstone export + portfolio publish</li>
+          <li class="y"><svg viewBox="0 0 14 14" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7l3 3 6-6"/></svg>Instructor analytics</li>
         </ul>
-        <button class="price-card-cta">Enquire</button>
+        <button class="pc-cta">Enquire</button>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── FAQ ── -->
+<section aria-labelledby="faq-h">
+  <div class="wrap" style="max-width:680px;">
+    <span class="eyebrow">Questions</span>
+    <h2 class="section-h" id="faq-h">Frequently asked.</h2>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-q">Can I upload a PDF CV?</summary>
+        <div class="faq-a">Yes. You can upload PDF, DOCX, or paste text directly. For the fastest result, a plain text paste or summary works well — we read what you've built, not just file formatting.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How accurate is the evidence score?</summary>
+        <div class="faq-a">The score is a composite of keyword signal, portfolio artifact match, and experience fit against hiring patterns for your target role. It's a directional indicator — not a guarantee — but it's far more specific than keyword matching. The gap artifacts are what matter most.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Does this work outside AI and research roles?</summary>
+        <div class="faq-a">Yes. Paste any job description — strategy, policy, evaluation, product, consulting, or any domain. FutuMatch extracts the proof signals that role demands and maps them against your CV. The output is always role-specific.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Can I use a LinkedIn URL instead of a CV?</summary>
+        <div class="faq-a">LinkedIn URL support is coming. For now, copy and paste your LinkedIn summary or experience section — it works just as well as a formatted CV.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What happens after the analysis?</summary>
+        <div class="faq-a">You get your Gap Map free. Unlock the Idealized Profile™, Artifact Roadmap, and Immediate Offer Strategy with credits. Each output is built from your specific CV and target role — not templates. Credits never expire.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Is my CV stored or used to train AI?</summary>
+        <div class="faq-a">No. Your CV is used only to generate your analysis and is never used to train AI models. Ever.</div>
+      </details>
     </div>
   </div>
 </section>
@@ -693,9 +1251,9 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">futu<em>match</em></div>
-  <div class="footer-note">Your data is never used to train AI models.</div>
-  <div class="footer-links">
+  <div class="f-logo">futu<em>match</em></div>
+  <div class="f-note">Your CV is never used to train AI models. Ever.</div>
+  <div class="f-links">
     <a href="#">Privacy</a>
     <a href="#">Terms</a>
     <a href="#">Refund policy</a>
@@ -703,175 +1261,207 @@
 </footer>
 
 <script>
-  /* ─── CONFIG ──────────────────────────────────────────────────────
-     Replace ENDPOINT with your cheap model API (OpenRouter, etc.)
-     This demo calls the Anthropic API directly for the prototype.
-     In production, proxy through your own backend to hide the key.
-  ──────────────────────────────────────────────────────────────── */
-  const API_ENDPOINT = "https://api.anthropic.com/v1/messages";
-  const MODEL = "claude-haiku-4-5-20251001"; // cheapest fast model
+const API = "https://api.anthropic.com/v1/messages";
+const MODEL = "claude-haiku-4-5-20251001";
+let t0 = null;
 
-  let startTime = null;
+async function runHeroDemo() {
+  const role = document.getElementById("hc-role").value.trim();
+  const bg   = document.getElementById("hc-bg").value.trim();
+  const btn  = document.getElementById("hc-btn");
+  const errEl = document.getElementById("hc-error");
+  const resEl = document.getElementById("hc-result");
 
-  async function runDemo() {
-    const jobTitle = document.getElementById("job-title").value.trim();
-    const bio = document.getElementById("user-bio").value.trim();
-    const btn = document.getElementById("demo-btn");
-    const errorEl = document.getElementById("demo-error");
-    const resultEl = document.getElementById("demo-result");
+  errEl.className = "hc-error";
+  resEl.className = "hc-result";
 
-    // reset
-    errorEl.className = "demo-error";
-    resultEl.className = "demo-result";
+  if (!role) { errEl.textContent = "Enter your target role first."; errEl.className = "hc-error visible"; return; }
+  if (!bg)   { errEl.textContent = "Add a line about your current background."; errEl.className = "hc-error visible"; return; }
 
-    if (!jobTitle || !bio) {
-      showError("Please fill in both fields to run the analysis.");
-      return;
-    }
-    if (bio.length < 20) {
-      showError("Please add a bit more about your background (at least one sentence).");
-      return;
-    }
+  btn.disabled = true;
+  btn.innerHTML = '<span class="ldots"><span></span><span></span><span></span></span>';
+  const heroT0 = Date.now();
 
-    // loading state
-    btn.disabled = true;
-    btn.innerHTML = '<span class="loading-dots"><span></span><span></span><span></span></span>';
-    startTime = Date.now();
+  const prompt = `You are a career identity analyst. User wants to become "${role}". Current background: "${bg}".
+Respond ONLY with valid JSON, no preamble, no fences:
+{"score":<int 0-100>,"label":<"Strong foundation"|"Developing fit"|"Early stage"|"Career pivot">,"insight":<2 sentences: what they bring + the single most critical missing artifact. Be specific — name real proof items not generic skills.>,"keywords_present":<array 2 strings>,"keywords_missing":<array 3 strings — specific proof artifacts or credentials, not generic skills>}`;
 
-    try {
-      const prompt = `You are a career identity analyst. A user wants to become a "${jobTitle}".
+  try {
+    const res = await fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-api-key": window.__FUTUMATCH_KEY__ || "", "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
+      body: JSON.stringify({ model: MODEL, max_tokens: 350, messages: [{ role: "user", content: prompt }] })
+    });
+    if (!res.ok) throw new Error(`api_${res.status}`);
+    const data = await res.json();
+    const parsed = JSON.parse(data.content?.[0]?.text.replace(/```json|```/g,"").trim());
+    renderHeroResult(parsed, ((Date.now()-heroT0)/1000).toFixed(1));
+  } catch(e) {
+    renderHeroMock(role, bg, ((Date.now()-heroT0)/1000).toFixed(1));
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7.5h9M8.5 4l3.5 3.5L8.5 11" stroke-linecap="round" stroke-linejoin="round"/></svg> Run again';
+  }
+}
 
-Their current background: "${bio}"
+function renderHeroResult(r, elapsed) {
+  const score = Math.min(100, Math.max(0, Math.round(r.score)));
+  document.getElementById("hc-score").textContent = score;
+  document.getElementById("hc-label").textContent = r.label || "";
+  document.getElementById("hc-insight").textContent = r.insight || "";
+  document.getElementById("hc-note").textContent = `Completed in ${elapsed}s`;
+  const fill = document.getElementById("hc-fill");
+  fill.style.width = "0"; setTimeout(() => { fill.style.width = score + "%"; }, 60);
+  const tags = document.getElementById("hc-tags");
+  tags.innerHTML = "";
+  (r.keywords_present||[]).forEach(k => { const s=document.createElement("span"); s.className="hc-tag has"; s.textContent="✓ "+k; tags.appendChild(s); });
+  (r.keywords_missing||[]).forEach(k => { const s=document.createElement("span"); s.className="hc-tag miss"; s.textContent="✗ "+k; tags.appendChild(s); });
+  document.getElementById("hc-result").className = "hc-result visible";
+}
 
-Respond ONLY with a JSON object — no preamble, no markdown fences, no explanation. The JSON must have exactly these fields:
+function renderHeroMock(role, bg, elapsed) {
+  const isResearch = /research|safety|policy|evaluat/i.test(role);
+  const hasTech    = /engineer|developer|code|software|python|ml|data/i.test(bg);
+  const score      = isResearch && hasTech ? 58 : hasTech ? 41 : 28;
+  renderHeroResult({
+    score,
+    label: score >= 55 ? "Developing fit" : score >= 35 ? "Early stage" : "Career pivot",
+    insight: hasTech
+      ? `Your technical background is real signal — most career pivoters lack it. But you have no public artifact: no benchmark, no evaluation, no published analysis that makes your thinking visible to a stranger in 30 seconds. That's the whole gap.`
+      : `You have transferable analytical capacity, but the field screens for public evidence first. The person who got the callback had something you don't yet — a document, a repo, a write-up with their name on it.`,
+    keywords_present: hasTech ? ["technical background", "systems thinking"] : ["analytical capacity", "domain curiosity"],
+    keywords_missing: isResearch
+      ? ["published evaluation artifact", "benchmark contribution", "portfolio identity proof"]
+      : ["public proof artifact", "portfolio identity", "domain-specific case study"]
+  }, elapsed);
+  document.getElementById("hc-note").textContent = "Demo mode · connect API key for live analysis";
+}
+
+async function runDemo() {
+  const role = document.getElementById("role-input").value.trim();
+  const bg   = document.getElementById("bg-input").value.trim();
+  const goal = document.getElementById("goal-input").value.trim();
+  const btn  = document.getElementById("demo-btn");
+  const errEl = document.getElementById("demo-error");
+  const resEl = document.getElementById("demo-result");
+
+  errEl.className = "demo-error";
+  resEl.className = "demo-result";
+
+  if (!role) { showErr("Enter your target role to continue."); return; }
+  if (!bg)   { showErr("Add a brief description of your current background."); return; }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="ldots"><span></span><span></span><span></span></span>';
+  t0 = Date.now();
+
+  const prompt = `You are a career identity analyst specialising in portfolio-based career transitions. The user wants to become a "${role}".
+
+Current background: "${bg}"${goal ? `\n12-month goal: "${goal}"` : ""}
+
+Respond ONLY with a valid JSON object. No preamble, no markdown fences, no trailing text. Use exactly these fields:
 {
-  "score": <integer 0-100, how well their background aligns to the target role>,
-  "label": <string, 1-3 words: "Strong fit" | "Developing fit" | "Early stage" | "Career pivot">,
-  "insight": <string, 2 sentences max. First: what they have going for them. Second: the most critical gap to address. Be specific, not generic.>,
-  "keywords_present": <array of 2-3 strings: skills/concepts from their bio that ARE relevant>,
-  "keywords_missing": <array of 3-4 strings: key skills/credentials they need for this role that aren't in their bio>
+  "score": <integer 0-100, alignment of background to target role>,
+  "label": <string, one of: "Strong foundation" | "Developing fit" | "Early stage" | "Career pivot">,
+  "insight": <string, 2 sentences: what they bring, what the most critical proof gap is. Be specific — name real artifacts or credentials, not generic skills.>,
+  "next_step": <string, 1–2 sentences: the single most high-leverage action they can take in the next 14 days to close the gap. Specific and actionable.>,
+  "keywords_present": <array of 2–3 strings: relevant signals from their background>,
+  "keywords_missing": <array of 3–4 strings: specific proof artifacts or credentials they lack for this role — not just skills>
 }`;
 
-      const response = await fetch(API_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": window.__FUTUMATCH_KEY__ || "",
-          "anthropic-version": "2023-06-01",
-          "anthropic-dangerous-direct-browser-access": "true"
-        },
-        body: JSON.stringify({
-          model: MODEL,
-          max_tokens: 400,
-          messages: [{ role: "user", content: prompt }]
-        })
-      });
+  try {
+    const res = await fetch(API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": window.__FUTUMATCH_KEY__ || "",
+        "anthropic-version": "2023-06-01",
+        "anthropic-dangerous-direct-browser-access": "true"
+      },
+      body: JSON.stringify({ model: MODEL, max_tokens: 500, messages: [{ role: "user", content: prompt }] })
+    });
 
-      if (!response.ok) {
-        const err = await response.json().catch(() => ({}));
-        throw new Error(err.error?.message || `Request failed (${response.status})`);
-      }
+    if (!res.ok) throw new Error(`api_${res.status}`);
+    const data = await res.json();
+    const raw = data.content?.[0]?.text || "";
+    const parsed = JSON.parse(raw.replace(/```json|```/g, "").trim());
+    renderResult(parsed);
 
-      const data = await response.json();
-      const raw = data.content?.[0]?.text || "";
-      const clean = raw.replace(/```json|```/g, "").trim();
-      const result = JSON.parse(clean);
-      const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-
-      renderResult(result, elapsed);
-
-    } catch (err) {
-      console.error(err);
-      // DEMO MODE — show realistic mock result when no API key
-      if (err.message.includes("401") || err.message.includes("403") || err.message.includes("key") || err.message.includes("Failed to fetch")) {
-        renderMockResult(jobTitle, bio);
-      } else {
-        showError("Something went wrong. Please try again.");
-      }
-    } finally {
-      btn.disabled = false;
-      btn.innerHTML = `
-        <svg viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6"/><path d="M5.5 4.5l4 2.5-4 2.5z" fill="currentColor" stroke="none"/></svg>
-        Analyse again`;
+  } catch(e) {
+    if (/api_401|api_403|Failed to fetch|key/.test(e.message)) {
+      renderMock(role, bg);
+    } else {
+      showErr("Something went wrong — please try again.");
     }
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = `<svg viewBox="0 0 15 15" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6"/><path d="M6 5l4 2.5L6 10z" fill="currentColor" stroke="none"/></svg> Run again`;
   }
+}
 
-  function renderResult(result, elapsed) {
-    const score = Math.min(100, Math.max(0, Math.round(result.score)));
-    document.getElementById("score-num").textContent = score;
-    document.getElementById("score-label").textContent = result.label || "Fit analysis";
-    document.getElementById("score-sub").textContent = `vs your target role`;
-    document.getElementById("insight-box").innerHTML =
-      `<strong>Analysis:</strong> ${result.insight || ""}`;
-    document.getElementById("demo-timer").textContent = elapsed ? `Completed in ${elapsed}s` : "";
+function renderResult(r) {
+  const score = Math.min(100, Math.max(0, Math.round(r.score)));
+  const elapsed = ((Date.now() - t0) / 1000).toFixed(1);
 
-    const fill = document.getElementById("score-fill");
-    fill.style.width = "0";
-    setTimeout(() => { fill.style.width = score + "%"; }, 50);
+  document.getElementById("res-score").textContent = score;
+  document.getElementById("res-label").textContent = r.label || "";
+  document.getElementById("res-insight").textContent = r.insight || "";
+  document.getElementById("res-next").innerHTML = r.next_step ? `<strong>Next 14 days:</strong> ${r.next_step}` : "";
+  document.getElementById("res-note").textContent = `Analysis completed in ${elapsed}s`;
+  document.getElementById("res-word").textContent = score >= 70 ? "Strong" : score >= 45 ? "Developing" : "Early stage";
 
-    const tagContainer = document.getElementById("gap-tags");
-    tagContainer.innerHTML = "";
-    (result.keywords_present || []).forEach(k => {
-      const span = document.createElement("span");
-      span.className = "gap-tag present";
-      span.textContent = "✓ " + k;
-      tagContainer.appendChild(span);
-    });
-    (result.keywords_missing || []).forEach(k => {
-      const span = document.createElement("span");
-      span.className = "gap-tag";
-      span.textContent = "✗ " + k;
-      tagContainer.appendChild(span);
-    });
+  const fill = document.getElementById("res-fill");
+  fill.style.width = "0";
+  setTimeout(() => { fill.style.width = score + "%"; }, 60);
 
-    document.getElementById("demo-result").className = "demo-result visible";
-  }
-
-  function renderMockResult(jobTitle, bio) {
-    // Generate realistic-feeling mock based on inputs
-    const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-    const isAISafety = jobTitle.toLowerCase().includes("safety") || jobTitle.toLowerCase().includes("ai");
-    const hasML = bio.toLowerCase().includes("ml") || bio.toLowerCase().includes("machine learning");
-    const hasSWE = bio.toLowerCase().includes("software") || bio.toLowerCase().includes("engineer") || bio.toLowerCase().includes("code");
-
-    const score = isAISafety && (hasML || hasSWE) ? 61 : hasSWE ? 44 : 32;
-    const label = score >= 60 ? "Developing fit" : score >= 40 ? "Early stage" : "Career pivot";
-
-    const mockKeywordsPresent = hasSWE
-      ? ["software engineering", hasML ? "ML fundamentals" : "technical background"]
-      : ["domain knowledge", "analytical thinking"];
-    const mockKeywordsMissing = isAISafety
-      ? ["mechanistic interpretability", "alignment theory", "red-teaming", "research publication"]
-      : ["domain expertise", "relevant credentials", "portfolio projects", "sector vocabulary"];
-
-    const insight = hasSWE
-      ? `Your technical foundation gives you a stronger entry point than most career pivoters — systems thinking and code familiarity are genuinely valued in ${jobTitle} roles. The critical gap is the lack of field-specific credentials: you need at least one research artifact or course completion (e.g. MATS, BlueDot, ARENA) to signal genuine domain commitment.`
-      : `Your background shows transferable analytical capacity, which is a real asset for ${jobTitle} roles that value diverse perspectives. The gap to close is building visible, citable evidence of domain engagement — even a completed course, a published write-up, or a contribution to a relevant project will move your alignment score significantly.`;
-
-    renderResult({
-      score,
-      label,
-      insight,
-      keywords_present: mockKeywordsPresent,
-      keywords_missing: mockKeywordsMissing
-    }, elapsed);
-
-    document.getElementById("demo-timer").textContent =
-      `Demo mode — connect your API key to run live analysis`;
-  }
-
-  function showError(msg) {
-    const el = document.getElementById("demo-error");
-    el.textContent = msg;
-    el.className = "demo-error visible";
-  }
-
-  // Allow Enter in title field to trigger
-  document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("job-title").addEventListener("keydown", e => {
-      if (e.key === "Enter") runDemo();
-    });
+  const tags = document.getElementById("res-tags");
+  tags.innerHTML = "";
+  (r.keywords_present || []).forEach(k => {
+    const s = document.createElement("span");
+    s.className = "rtag has"; s.textContent = "✓ " + k;
+    tags.appendChild(s);
   });
+  (r.keywords_missing || []).forEach(k => {
+    const s = document.createElement("span");
+    s.className = "rtag miss"; s.textContent = "✗ " + k;
+    tags.appendChild(s);
+  });
+
+  document.getElementById("demo-result").className = "demo-result visible";
+}
+
+function renderMock(role, bg) {
+  const isResearch = /research|safety|policy|evaluat/i.test(role);
+  const hasTech    = /engineer|developer|code|software|python|ml|data/i.test(bg);
+  const score      = isResearch && hasTech ? 58 : hasTech ? 41 : 28;
+
+  renderResult({
+    score,
+    label: score >= 55 ? "Developing fit" : score >= 35 ? "Early stage" : "Career pivot",
+    insight: hasTech
+      ? `You have something most career pivoters don't: systems thinking from actually building things. The shortlisted candidate for a ${role} role isn't smarter than you — they just made their thinking visible first. There is no public artifact with your name on it. No benchmark you ran, no evaluation you published, nothing a hiring committee can point to and say "this person can do the work." That's the gap. It's closeable.`
+      : `Your background carries more than you think — but the field you're entering runs on visible evidence, not potential. The person who got the callback for a ${role} role didn't just have knowledge; they had a document, a GitHub repo, a published write-up that made their judgment legible to a stranger in thirty seconds. You don't have that yet. That's the whole gap.`,
+    next_step: isResearch
+      ? `Start BlueDot Impact's AI Safety Fundamentals (free, 4 weeks). But don't just take the course — commit to publishing one public reflection after each module. By week 4, you'll have credentials and a visible thinking trail. That combination is what moves your score.`
+      : `Pick one open problem in the ${role} space and write a one-page analysis. Publish it — a blog post, a LinkedIn article, anything public and findable. This is the minimum viable artifact. It moves your alignment score more than any certificate.`,
+    keywords_present: hasTech ? ["technical background", "systems thinking"] : ["analytical capacity", "domain curiosity"],
+    keywords_missing: isResearch
+      ? ["published evaluation artifact", "alignment theory fluency", "benchmark contribution", "research programme completion"]
+      : ["domain-specific portfolio", "public proof artifact", "sector vocabulary", "role-relevant credential"]
+  });
+  document.getElementById("res-note").textContent = "Demo mode — connect your API key for live analysis";
+}
+
+function showErr(msg) {
+  const el = document.getElementById("demo-error");
+  el.textContent = msg; el.className = "demo-error visible";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("role-input").addEventListener("keydown", e => { if (e.key === "Enter") document.getElementById("bg-input").focus(); });
+  document.getElementById("bg-input").addEventListener("keydown", e => { if (e.key === "Enter") runDemo(); });
+  document.getElementById("hc-role").addEventListener("keydown", e => { if (e.key === "Enter") document.getElementById("hc-bg").focus(); });
+});
 </script>
 
 </body>
